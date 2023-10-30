@@ -11,7 +11,7 @@
 $arguments = array();
 $o = null;
 $options = getopt("h:t:");
-$settings = array();
+$aa_settings = array();
 
 // aig
 foreach ($argv as $key => $arg) {
@@ -36,48 +36,48 @@ foreach ($options as $key => $value) {
             $o .= "Usage\n   php flip.php [-o optionValue ...] <inputfile>\n\n";
             $o .= "Options\n  -h\tShow help\n  -t\tTemplate to use for processing";
             $o .= "\n\nEnd of help\n";
+            die ($o);
             break;
         case 't':
             if ($value == "") {$value = "default";}
-            $settings["template"] = $value;
+            $aa_settings["template"] = $value;
             break;
     }
 }
 
-// output any message from above block and reset output var
-if ($o) {echo $o; $o = null;}
-
 foreach ($arguments as $argument) {
     // get the first argument as the input file
-    $settings["inputFile"] = $argument;
+    $aa_settings["inputFile"] = $argument;
     break;
 }
 
-foreach ($settings as $key => $value)
-{
-    echo "$key:\t$value\n";    
-}
+// now we should have our settings in $aa_settings. set some default values
 
+$aa_settings["optionsOutputTypes"]          = "SQLite3, CSV";
+$aa_settings["optionsCSVSeperator"]         = ",";
+$aa_settings["defaultOutputType"]           = "CSV";
+$aa_settings["defaultOutputFile"]           = "output/defaultOutput.file";
+$aa_settings["defaultCSVFields"]            = "bank,account,trxDate,trxDescription,trxValue";
+$aa_settings["defaultSqlite3TableName"]     = "trxdata";
+$aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
 
+$aa_Output["RedError"]      = "\e[31m[Error]\e[39m\n\t";
 
-/*
-$template = 
-$settings["bank"] = "nab-spendings";
-$settings["outputOptions"] = "SQLite3, CSV";
-$settings["outputDefault"] = "CSV";
-$settings["outputFile"] = "output/defaultOutput.file";
-$settings["sqlite3TableName"] = "trxdata";
-$settings["sqlite3TableFields"] = "userid,bank,account,trxDate,trxDescription,trxValue";
+// check we were given an input file, die if we weren't.
+if (!isset($aa_settings["inputFile"])) {die("No input file was supplied. Use: flip.php -h for help\n");}
 
-// check if user gave us a filename in the first argument, read its contents if they did
+// assuming we have input file argument if we get to here
+$iF = $aa_settings["inputFile"];
+$tName = $aa_settings["template"];
 
 /********************************* Stage 1: Read input file contents *******************************************************/
+echo "flip - $iF using template: $tName\n";
 
-/*
 // read file contents into a string
-$f = file_get_contents($argv[1]);
-if (strlen($f) == 0) { die("\e[31m[Error]\e[39m\n\tInput file had nothing in it. Check file/filename and try again.\n"); }
+if (!file_exists($iF)) { die($aa_Output["RedError"]."Input file does not exist. Check path/filename and try again.\n"); }
+$f = file_get_contents($iF);
+if (!isset($f)) {die($aa_Output["RedError"]."Failed to read input file contents.\n");}
 
-*/
+// if we get here, we should have out input content in $f
 
 ?>
