@@ -77,7 +77,13 @@ echo "flip - $iF using template: $tName\n";
 if (!file_exists($iF)) { die($aa_Output["RedError"]."Input file does not exist. Check path/filename and try again.\n"); }
 $f = file_get_contents($iF);
 if (!isset($f)) {die($aa_Output["RedError"]."Failed to read input file contents.\n");}
-
 // if we get here, we should have out input content in $f
+
+// main regex to find transactions initially is here
+$aa_template[$tName]["mainRegex"] = array("/(.*?)(Date Particulars Debits Credits Balance (\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})?(Brought forward ((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr))|Brought forward)(.*?)(Carried forward|Identifying.*))/is" => "$12");
+
+foreach ($aa_template[$tName]["mainRegex"] as $regExp => $subExp) {$s_trxResults = preg_replace($regExp,$subExp,$f);}
+
+echo $s_trxResults."\n\n";
 
 ?>

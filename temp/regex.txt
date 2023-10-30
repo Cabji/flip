@@ -1,0 +1,1 @@
+array("/(.*?)(Date Particulars Debits Credits Balance (\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})?(Brought forward ((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr))|Brought forward)(.*?)(Carried forward|Identifying.*))/is" => "$12");
