@@ -103,12 +103,14 @@ if (!isset($f)) {die($aa_Output["RedError"]."Failed to read input file contents.
 
 
 // main regex to find transactions initially is here
-$aa_template[$tName]["mainRegex"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})?( Brought forward ((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr))|Brought forward)(.*?)(Carried forward|Identifying.*)/is" => "$12");
+$aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)((\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}\sBrought forward\s((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr)))|Brought forward)(.*?)(Carried forward|Identifying.*)/is" => "$12", 
+                                        "/(?# Remove excessive ... dots from trx data)\.\.\.*/is" => "");
 
-foreach ($aa_template[$tName]["mainRegex"] as $regExp => $subExp) 
+
+foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp) 
 {
-    $s_trxResults = preg_replace($regExp,$subExp,$f);
+    $f = preg_replace($regExp,$subExp,$f);
 }
 
-file_put_contents("temp.txt", $s_trxResults);
+file_put_contents("temp.txt", $f);
 ?>
