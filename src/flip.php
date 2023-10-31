@@ -57,14 +57,17 @@ foreach ($arguments as $argument) {
 
 $aa_settings["optionsOutputTypes"]          = "SQLite3, CSV";
 $aa_settings["optionsCSVSeperator"]         = ",";
-$aa_settings["optionsPDFtoTextCmd"]         = "pdftotext -raw #INPUT# #OUTPUT#";
+$aa_settings["optionsPDFtoTextCmd"]         = "pdftotext -q -raw #INPUT# #OUTPUT#";
 $aa_settings["defaultOutputType"]           = "CSV";
 $aa_settings["defaultOutputFile"]           = "output/defaultOutput.file";
 $aa_settings["defaultCSVFields"]            = "bank,account,trxDate,trxDescription,trxValue";
 $aa_settings["defaultSqlite3TableName"]     = "trxdata";
 $aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
 
-$aa_Output["RedError"]      = "\e[31m[Error]\e[39m\n\t";
+$aa_Output["RedErrorTitle"]     = "\e[31m[Error]\e[39m\n\t";
+$aa_Output["BlueStartTitle"]    = "\e[34m[Start]\e[39m\n\t";
+$aa_Output["CyanOk"]           = "\e[36mOk\e[39m";
+$aa_Output["RedFail"]           = "\e[91mFail\e[39m";
 
 // check we were given an input file, die if we weren't.
 if (!isset($aa_settings["inputFile"])) {die("No input file was supplied. Use: flip.php -h for help\n");}
@@ -82,35 +85,46 @@ $cmd = str_replace($search, $replace, $aa_settings["optionsPDFtoTextCmd"]);
 $termCode = null;
 $output = null;
 
-echo $cmd."\n";
+echo $aa_Output["BlueStartTitle"]."\n\tConvert input PDF file to text\n\t  • $cmd ===> ";
 exec($cmd, $output, $termCode);
+if ($termCode === 0) {echo $aa_Output["CyanOk"]."\n";} else {echo $aa_Output["RedFail"]."\n\nCheck file path, existence and permissions.\n"; die();}
 
-if ($termCode === 0)
-{
-    echo "pdf convert was success\n";
-}
+// set temp filename
+$tF = "temp/".pathinfo($aa_settings["inputFile"], PATHINFO_FILENAME).".txt";
 
-// set input filename
-$iF = "temp/".pathinfo($aa_settings["inputFile"], PATHINFO_FILENAME).".txt";
-
-echo "iF: ".$iF."\n";
-
+echo "\n\tParse text data using template's regexes\n\t  • Temp file exists: $tF ===> ";
 // read file contents into a string
-if (!file_exists($iF)) { die($aa_Output["RedError"]."Text input file does not exist. Check pdftotext conversion worked or path/filename and try again.\n"); }
-$f = file_get_contents($iF);
-if (!isset($f)) {die($aa_Output["RedError"]."Failed to read input file contents.\n");}
+if (!file_exists($tF)) { die($aa_Output["RedFail"]."\n\nText input file does not exist. Check pdftotext conversion worked, path/filename/permissions and try again.\n"); }
+else {echo $aa_Output["CyanOk"];}
+
+echo "\n\t  • Read Temp File Contents ===> ";
+$f = file_get_contents($tF);
+if (!isset($f)) {die($aa_Output["RedFail"]."\n\nFailed to read input file contents.\n");}
+else {echo $aa_Output["CyanOk"];
+}
 // if we get here, we should have out input content in $f
 
-
+echo "\n\t  • Apply regexes to text data";
 // main regex to find transactions initially is here
 $aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)((\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}\sBrought forward\s((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr)))|Brought forward)(.*?)(Carried forward|Identifying.*)/is" => "$12", 
                                         "/(?# Remove excessive ... dots from trx data)\.\.\.*/is" => "");
 
-
+$c = 0;
 foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp) 
 {
+    $c++;
     $f = preg_replace($regExp,$subExp,$f);
+    // check if the regExp starts with a comment
+    if (preg_match('/^\/\(\?\#/', $regExp))
+    {
+        // pull the regex comment from the regex
+        if (preg_match('/^\/\(\?\#(.*?)\)/', $regExp, $matches)) {$regExpName = trim($matches[1]);}
+    } else {
+        $regExpName = "Regex $c";
+    }
+    echo "\n\t    • $regExpName";
 }
 
+echo "\n";
 file_put_contents("temp.txt", $f);
 ?>
