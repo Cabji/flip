@@ -105,9 +105,10 @@ else {echo $aa_Output["CyanOk"];
 // if we get here, we should have out input content in $f
 
 echo "\n\t  • Apply regexes to text data";
-// main regex to find transactions initially is here
+// template associative array that holds regexes for processing text - this is what you need to alter to configure a new template
 $aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)((\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}\sBrought forward\s((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr)))|Brought forward)(.*?)(Carried forward|Identifying.*)/is" => "$12", 
-                                        "/(?# Remove excessive ... dots from trx data)\.\.\.*/is" => "");
+                                        "/(?# Remove excessive ... dots from trx data)\.\.\.*/is" => "",
+                                        "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)((Cr|Dr)\s(\d{0,3})(\,{0,1})*(\d{0,3})(\.)(\d{1,2}))/" => "Date: $1\n$3\nDate Closing Balance $6$7$8$9$10 $5#DATEBREAK#");
 
 $c = 0;
 foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp) 

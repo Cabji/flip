@@ -1,3 +1,7 @@
+20231031:
+ - update readme with some documentation
+ - added working output messages and formatting
+
 20231030: 
  - tweaked regex to suit new direct input method
  - added reading input file directly from PDF (requires pdftotext util: sudo apt-get install xpdf)
