@@ -1,0 +1,4 @@
+nabSpendings.customCode.php - entry 38 had missing data. Data was: 
+	[0]: @
+	[1]: @
+	[2]: @
