@@ -1,4 +1,3 @@
-a:4:{s:125:"/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)(.*?)(Carried forward|Identifying)/is";s:2:"$3";s:81:"/(?# Remove excessive ... dots and all newline chars from trx data)(\.\.\.*|
-)/is";s:0:"";s:55:"/(?# Clean up excessive whitespace in all data)(\s+)/is";s:1:" ";s:190:"/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)
+a:4:{s:125:"/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)(.*?)(Carried forward|Identifying)/is";s:2:"$3";s:57:"/(?# Remove excessive ... dots from trx data)(\.\.\.*)/is";s:0:"";s:190:"/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)
 ([\d,]+\.\d{2}))|(( Brought forward )([\d,]+\.\d{2}) (Cr|Dr)))/is";s:39:"$1#SEP#$3$9#SEP#$7$10 $6$11#DATEBREAK#
-";}
+";s:71:"/(?# Clean up excessive whitespace in all data)((?<!#DATEBREAK#)\s+)/is";s:1:" ";}

@@ -94,7 +94,7 @@ echo $aa_Output["BlueStartTitle"]."\n\tConvert input PDF file to text\n\t  • $
 exec($cmd, $output, $termCode);
 if ($termCode === 0) {echo $aa_Output["CyanOk"]."\n";} else {echo $aa_Output["RedFail"]."\n\nCheck file path, existence and permissions.\n"; die();}
 
-// set temp filename
+// set temp output filename
 $tF = "temp/".pathinfo($aa_settings["inputFile"], PATHINFO_FILENAME).".txt";
 
 echo "\n\tParse text data using template's regexes\n\t  • Temp file exists: $tF ===> ";
@@ -110,13 +110,10 @@ else {echo $aa_Output["CyanOk"];
 
 // if we get here, we should have out input content in $f
 echo "\n\t  • Apply regexes to text data";
-/*
-// template associative array that holds regexes for processing text - this is what you need to alter to configure a new template
-$aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)(.*?)(Carried forward|Identifying)/is" => "$3", 
-                                        "/(?# Remove excessive ... dots and all newline chars from trx data)(\.\.\.*|\n)/is" => "",
-                                        "/(?# Clean up excessive whitespace in all data)(\s+)/is" => " ",
-                                        "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)\n([\d,]+\.\d{2}))|(( Brought forward )([\d,]+\.\d{2}) (Cr|Dr)))/is" => "$1#SEP#$3$9#SEP#$7$10 $6$11#DATEBREAK# SMELL MY DIRTY ASS\\n");
-*/
+
+// $aa_template[$tName]["regexes"]
+// template associative array that holds regexes for processing text - is found in src/templates/default.template or your template config file
+
 $c = 0;
 foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp) 
 {
@@ -133,7 +130,7 @@ foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp)
     echo "\n\t    • $regExpName";
 }
 unset($c);
-file_put_contents("temp.txt.2",$f);
+file_put_contents("temp.txt",$f);
 
 // now we need to use custom processing to convert the string with trx data into a standard format object.
 if (file_exists($relativePath."templates/$tName.customCode.php")) 
