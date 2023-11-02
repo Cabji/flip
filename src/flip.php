@@ -119,7 +119,7 @@ foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp)
 {
     $c++;
     $f = preg_replace($regExp,$subExp,$f);
-    // check if the regExp starts with a comment
+    // output the regex name to stdout - check if the regExp starts with a comment
     if (preg_match('/^\/\(\?\#/', $regExp))
     {
         // pull the regex comment from the regex
@@ -130,8 +130,8 @@ foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp)
     echo "\n\t    • $regExpName";
 }
 unset($c);
-file_put_contents("temp.txt",$f);
 
+file_put_contents("temp.txt",$f);
 // now we need to use custom processing to convert the string with trx data into a standard format object.
 if (file_exists($relativePath."templates/$tName.customCode.php")) 
 {
