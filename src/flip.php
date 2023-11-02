@@ -141,7 +141,7 @@ else {echo "\n\t".$aa_Output["RedFail"]." running $tName custom proessing code -
 
 echo "\n";
 file_put_contents("temp.txt", $f);
-file_put_contents($relativePath."../temp/debug.txt", $d);
+file_put_contents($relativePath."../updatetemp/debug.txt", $d);
 
 // save tempate settings to template file
 $saveFile = $relativePath."templates/$tName.template";

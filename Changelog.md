@@ -1,3 +1,7 @@
+20231102:
+ - added customRegexes and customCode template file for additional processing of input data to achieve "standard format"
+ - finished initial processing of PDF file to text format and extracting desired data only via template configuration
+
 20231031:
  - update readme with some documentation
  - added working output messages and formatting
