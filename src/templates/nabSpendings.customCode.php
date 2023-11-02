@@ -39,22 +39,38 @@ else
             {
                 // convert date to unix timestamp
                 $a_result[$key]["date"] = strtotime(trim($data[0]));
-                $a_result[$key]["closingBalance"] = trim(fnCrDrToSigned($data[2]));
-                $a_temp3 = preg_split("/([\d,]+\.\d{2})/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
+
+                // place closing balance value
+                // dev-note: we strip the , and . chars from currency values here because we need to perform math on the values
+                $closingBalance = str_replace(array(",", "."), "", trim(fnCrDrToSigned($data[2])));
+                $a_result[$key]["closingBalance"] = $closingBalance;
+
+                // the regex catches foreign currency exchanges
+                $a_temp3 = preg_split("/((?<!Frgn Amt: )[\d,]+\.\d{2})/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
+                // $a_temp3 format is like this: 
+                //  array [0] = trx description A   [1] = -12.34
+                //        [2] = trx description B   [3] = +987.65
+                // this is the array we loop through in the for loop below.
+
                 $c = 0;
                 for ($i = 0; $i <= sizeof($a_temp3); $i += 2)
                 {
+                    // $a_temp3[i] = current trx description (string)
+                    // $a_temp3[i+1] = current trx value (string: +/-1,234.56)
+                    // sanitize the trx value - strip any . or , from the trx value
+                    $a_temp3[$i+1] = str_replace(array(",","."),"",$a_temp3[$i+1]);
+                    
                     if (trim($a_temp3[$i]) != "") {$a_temp4[$c] = trim($a_temp3[$i]).trim(",".$a_temp3[$i+1]);}
                     $c++;
                 }
+                $a_result[$key]["difference"] = $a_result[$key]["closingBalance"] - $a_result[$key - 1]["closingBalance"];
                 $a_result[$key]["transactions"] = $a_temp4;
                 unset($c, $a_temp3, $a_temp4);
-                
             }
             else {$d .= "nabSpendings.customCode.php - entry $key had missing data. Data was: \n\t[0]: $data[0]\n\t[1]: $data[1]\n\t[2]: $data[2]\n";}
         }
         unset($a_temp2);
-//        print_r($a_result);
+        print_r($a_result);
 
         // now run the custom regexes as required
         $c = 0;
