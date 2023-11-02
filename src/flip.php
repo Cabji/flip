@@ -107,15 +107,15 @@ $f = file_get_contents($tF);
 if (!isset($f)) {die($aa_Output["RedFail"]."\n\nFailed to read input file contents.\n");}
 else {echo $aa_Output["CyanOk"];
 }
-// if we get here, we should have out input content in $f
 
+// if we get here, we should have out input content in $f
 echo "\n\t  • Apply regexes to text data";
 /*
 // template associative array that holds regexes for processing text - this is what you need to alter to configure a new template
-$aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)((\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}\sBrought forward\s((\d{0,3})(\,{0,1})*(\d{0,3})\.(\d{1,2}) (Cr|Dr)))|Brought forward)(.*?)(Carried forward|Identifying.*)/is" => "$12", 
+$aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)(.*?)(Carried forward|Identifying)/is" => "$3", 
                                         "/(?# Remove excessive ... dots and all newline chars from trx data)(\.\.\.*|\n)/is" => "",
                                         "/(?# Clean up excessive whitespace in all data)(\s+)/is" => " ",
-                                        "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)((Cr|Dr)(\d{0,3})(\,{0,1})*(\d{0,3})(\.)(\d{1,2}))/is" => "$1#SEP#$3#SEP#$6$7$8$9$10 $5#DATEBREAK#");
+                                        "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)\n([\d,]+\.\d{2}))|(( Brought forward )([\d,]+\.\d{2}) (Cr|Dr)))/is" => "$1#SEP#$3$9#SEP#$7$10 $6$11#DATEBREAK# SMELL MY DIRTY ASS\\n");
 */
 $c = 0;
 foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp) 
@@ -133,15 +133,19 @@ foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp)
     echo "\n\t    • $regExpName";
 }
 unset($c);
+file_put_contents("temp.txt.2",$f);
 
 // now we need to use custom processing to convert the string with trx data into a standard format object.
-if (file_exists($relativePath."templates/$tName.customCode.php")) {echo "\n\tRunning $tName custom processing code"; include $relativePath."templates/$tName.customCode.php";}
+if (file_exists($relativePath."templates/$tName.customCode.php")) 
+{
+    echo "\n\tRunning $tName custom processing code"; 
+    include $relativePath."templates/$tName.customCode.php";
+}
 else {echo "\n\t".$aa_Output["RedFail"]." running $tName custom proessing code - $relativePath.templates/$tName.customCode.php does not exist";}
 
 
 echo "\n";
-file_put_contents("temp.txt", $f);
-file_put_contents($relativePath."../updatetemp/debug.txt", $d);
+file_put_contents($relativePath."../temp/debug.txt", $d);
 
 // save tempate settings to template file
 $saveFile = $relativePath."templates/$tName.template";

@@ -1,0 +1,1 @@
+(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)([\d,]+\.\d{2}))|(Brought forward ([\d,]+\.\d{2}) Cr|Dr\n))

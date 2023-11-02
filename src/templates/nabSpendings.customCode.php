@@ -20,7 +20,7 @@ else
 
         include "$relativePath/include/fnCrDrToSigned.php";
         // explode the string on datebreak token
-        $a_temp1 = explode("#DATEBREAK#",$f);
+        $a_temp1 = explode("#DATEBREAK#\n",$f);
         $c = 0;
 
         // loop the results and explode each entry on SEP token into second array
@@ -54,7 +54,7 @@ else
             else {$d .= "nabSpendings.customCode.php - entry $key had missing data. Data was: \n\t[0]: $data[0]\n\t[1]: $data[1]\n\t[2]: $data[2]\n";}
         }
         unset($a_temp2);
-        print_r($a_result);
+//        print_r($a_result);
 
         // now run the custom regexes as required
         $c = 0;
