@@ -94,7 +94,7 @@ else
             if (!array_key_exists("transactions", $trxEntry)) {$d .= "$tName.customCode.php (".__LINE__."): a_result[$i] has no transactions key\n";}
             else
             {
-                // grab the trx values from the trx["descriptions"] value and store in $valueSet array. array_values() reindexes the array to ensure we start from index [0]
+                // grab the trx values from the trxEntry["transactions"] array and store in $valueSet array. array_values() reindexes the array to ensure we start from index [0]
                 $valueSet[$i] = array_map(function($value) {$parts = explode(",", $value); return intval(end($parts));}, array_values($trxEntry["transactions"]));
 //                if ($i == 5) {echo "  - trxEntry[difference]: $trxEntry[difference]\n  - valueSet[i]: \n"; print_r($valueSet[$i]); echo "\n";}
 
@@ -104,15 +104,32 @@ else
                     // signValues returned false so something is wrong with this valueSet and needs human inspection
                     array_push($a_validateTRXs, $i);
                     echo "V";
+                    $temp = $valueSet[$i];
+                    unset($valueSet[$i]);
+                    $valueSet[$i][0] = $temp;
+                    unset($temp);
                 }
                 else {$valueSet[$i] = $result;}
+                // update the trxEntry[transactions] with 1 signed value set in valueSet
+                foreach ($trxEntry["transactions"] as $j => &$trxStr)
+                {
+                    // update the trxEntry[transactions] values with signed values only if the valueSet[i] holds 1 entry only. more than 1 entry means a human has to validate the signs
+                    if (sizeof($valueSet) == 1)
+                    {
+                        $trxStr = substr_replace($trxStr, $valueSet[$i][$j], strrpos($trxStr, ',') + 1);
+                    }
+                }
+                // mark entries with more than 1 signed valueSet for human validation
+                if (sizeof($valueSet[$i]) > 1) {array_push($a_validateTRXs, $i);}
             }
 
             // use custom function to calculate the trx value signs
             //$trxEntry["transactions"] = signValues($trxEntry["difference"], $trxEntry["transactions"]);
         }
+//        print_r($a_validateTRXs);
+//        print_r($valueSet);
         print_r($a_result);
-
+/*
         // now run the custom regexes as required
         $c = 0;
         foreach ($aa_template[$tName]["customRegexes"] as $regExp => $subExp) 
@@ -130,8 +147,8 @@ else
             echo "\n\t  • $regExpName";
         }
         unset($c);
+*/
     }
-
     echo "\n";
 }
 ?>
