@@ -27,7 +27,7 @@
 
     Return Value: 
         The return value is either: 
-            boolean false - will occur is difference cannot be yielded by the valueSet. Meaning: your numbers are bogus or corrupted.
+            boolean false - will occur if difference cannot be yielded by the valueSet. Meaning: your numbers are bogus or corrupted.
             array - if one or more sign combinations can be applied to the valueSet to yield difference, the valueSet(s) will be 
             returned in a multi-dimensional array, eg: 
 

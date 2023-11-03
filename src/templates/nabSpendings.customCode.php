@@ -19,6 +19,7 @@ else
         // (see docs for more info about the standard format)
 
         include "$relativePath/include/fnCrDrToSigned.php";
+        echo "\n\t  • Exploding result string";
         // explode the string on datebreak token
         $a_temp1 = explode("#DATEBREAK#\n",$f);
         $c = 0;
@@ -29,15 +30,15 @@ else
             $a_temp2[$c] = explode("#SEP#", $data);
             $c++;
         }
-        unset($c, $a_temp1);
 
         $a_result = null;
         // loop the resulting array and build the standard format array - a_temp2 is an array of values: [n] => [0] = nn Mon yyy [1] = trx data string [2] = closing balance
+        echo "\n\t  • Building the standard format data array";
         foreach ($a_temp2 as $key => $data)
         {
             if ($data[0] && $data[1] && $data[2])
             {
-                // convert date to unix timestamp
+            // convert date to unix timestamp
                 $a_result[$key]["date"] = strtotime(trim($data[0]));
 
                 // place closing balance value
@@ -66,18 +67,51 @@ else
                     }
                     $c++;
                 }
+                // assign the updated data to $a_result array
                 if ($key >= 1) {$a_result[$key]["difference"] = $a_result[$key]["closingBalance"] - $a_result[$key - 1]["closingBalance"];}
                 if (isset($a_temp4)) {$a_result[$key]["transactions"] = $a_temp4;}
                 unset($c, $a_temp3, $a_temp4);
             }
             else {$d .= "nabSpendings.customCode.php - entry $key had missing data. Data was: \n\t[0]: $data[0]\n\t[1]: $data[1]\n\t[2]: $data[2]\n";}
         }
-        unset($a_temp2);
-        print_r($a_result);
+        unset($i, $a_temp1, $a_temp2);
 
+//        print_r($a_result);
         // now we have 'standard format' for the trx data, but in this template we need to determine the signs (+/-) for the trx values
-        // use custom function to calculate the trx value signs
-        
+        include "$relativePath/include/fn-signValues.php";
+
+        $a_validateDates = array();
+        $a_validateTRXs = array();
+        echo "\n\t  • Calculating +/- signs for TRX values";
+        // dev-note: &$trxEntry is passed by reference so we can update it in the foreach loop
+        $valueSet = null;
+        foreach ($a_result as $i => &$trxEntry)
+        {
+            if ($i % 10 === 1) {echo "\n\t\t";}
+            echo " [$i]";
+//            if ($i == 5) {print_r($trxEntry);}
+            if ($trxEntry["date"] == "") {array_push($a_validateDates, $i); echo "D";}
+            if (!array_key_exists("transactions", $trxEntry)) {$d .= "$tName.customCode.php (".__LINE__."): a_result[$i] has no transactions key\n";}
+            else
+            {
+                // grab the trx values from the trx["descriptions"] value and store in $valueSet array. array_values() reindexes the array to ensure we start from index [0]
+                $valueSet[$i] = array_map(function($value) {$parts = explode(",", $value); return intval(end($parts));}, array_values($trxEntry["transactions"]));
+//                if ($i == 5) {echo "  - trxEntry[difference]: $trxEntry[difference]\n  - valueSet[i]: \n"; print_r($valueSet[$i]); echo "\n";}
+
+                $result = signValues($trxEntry["difference"], $valueSet[$i]);
+                if ($result == false) 
+                {
+                    // signValues returned false so something is wrong with this valueSet and needs human inspection
+                    array_push($a_validateTRXs, $i);
+                    echo "V";
+                }
+                else {$valueSet[$i] = $result;}
+            }
+
+            // use custom function to calculate the trx value signs
+            //$trxEntry["transactions"] = signValues($trxEntry["difference"], $trxEntry["transactions"]);
+        }
+        print_r($a_result);
 
         // now run the custom regexes as required
         $c = 0;
@@ -97,5 +131,7 @@ else
         }
         unset($c);
     }
+
+    echo "\n";
 }
 ?>
