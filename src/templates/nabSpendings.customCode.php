@@ -75,6 +75,10 @@ else
         unset($a_temp2);
         print_r($a_result);
 
+        // now we have 'standard format' for the trx data, but in this template we need to determine the signs (+/-) for the trx values
+        // use custom function to calculate the trx value signs
+        
+
         // now run the custom regexes as required
         $c = 0;
         foreach ($aa_template[$tName]["customRegexes"] as $regExp => $subExp) 
