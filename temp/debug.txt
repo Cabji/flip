@@ -1,645 +1,655 @@
-nabSpendings.customCode.php - entry 41 had missing data. Data was: 
-	[0]:  a transaction made using your NAB Visa Debit card. When you use your NAB Visa Debit card and select the CREDIT button, or use the card number for transactions including those online or over the phone, the Particulars column on your statement for that transaction will be prefixed by 'V' for Visa followed by the last four digits of your card number used for that transaction and the date (DD/MM) on which you initiated the transaction. 770.95 Cr Explanatory Notes Please check all entries and report any apparent error or possible unauthorised transaction immediately. We may subsequently adjust debits and credits, which may result in a change to your account balance to accurately reflect the obligations between us. For information on resolving problems or disputes, contact us on 1800 152 015, or ask at any NAB branch. Summary of Government Charges From 1 July to date Last year to 30 June Government Withholding tax $0.00 $0.00 Bank Account Debit (BAD) tax $0.00 $0.00 Bank Accounts Debits (BAD) Tax or State Debits Duty has been abolished for all states & territories effective 1/7/2005. Any amount shown on this statement applies to debits processed on or before 30/06/2005. For further information on any applicable rebates, fees or government charges, please refer to the NAB's "A Guide to Fees & Charges" booklet. Please retain this statement for taxation purposes 
+nabSpendings.customCode.php - entry 44 had missing data. Data was: 
+	[0]:  a transaction made using your NAB Visa Debit card. When you use your NAB Visa Debit card and select the CREDIT button, or use the card number for transactions including those online or over the phone, the Particulars column on your statement for that transaction will be prefixed by 'V' for Visa followed by the last four digits of your card number used for that transaction and the date (DD/MM) on which you initiated the transaction. 413.13 Cr Explanatory Notes Please check all entries and report any apparent error or possible unauthorised transaction immediately. We may subsequently adjust debits and credits, which may result in a change to your account balance to accurately reflect the obligations between us. For information on resolving problems or disputes, contact us on 1800 152 015, or ask at any NAB branch. Summary of Government Charges From 1 July to date Last year to 30 June Government Withholding tax $0.00 $0.00 Bank Account Debit (BAD) tax $0.00 $0.00 Bank Accounts Debits (BAD) Tax or State Debits Duty has been abolished for all states & territories effective 1/7/2005. Any amount shown on this statement applies to debits processed on or before 30/06/2005. For further information on any applicable rebates, fees or government charges, please refer to the NAB's "A Guide to Fees & Charges" booklet. Please retain this statement for taxation purposes 
 	[1]: 
 	[2]: 
-nabSpendings.customCode.php (95): a_result[0] has no transactions key
+nabSpendings.customCode.php (94): a_result[0] has no transactions key
 Array
 (
     [0] => Array
         (
-            [date] => 1548162000
-            [closingBalance] => +112245
+            [date] => 1532095200
+            [closingBalance] => +81057
         )
 
     [1] => Array
         (
-            [date] => 1548162000
-            [closingBalance] => +85575
-            [difference] => -26670
+            [date] => 1532268000
+            [closingBalance] => +82144
+            [difference] => 1087
             [transactions] => Array
                 (
-                    [0] => 10a2171211b1a57f08 Raiz Investment 342120,-1088
-                    [1] => EFTPOS 23/01 10:17 A&k Pharm Pty Ltd,-7384
-                    [2] => EFTPOS 22/01 19:21 Aldi Stores - Elanor,-9730
-                    [3] => V3024 23/01 Afterpay Pty Ltd Melb Ref: 03060694889,-8468
+                    [0] => Internet Transfer Wage wage,+50000
+                    [1] => Internet Bpay Alinta Energy 10145277564,-23887
+                    [2] => eb9aebf17b511b593d Raiz Investment 342120,-2630
+                    [3] => EFTPOS 23/07 15:38 Earth Markets Robina,-1157
+                    [4] => EFTPOS 23/07 15:33 Coles 4405,-6740
+                    [5] => EFTPOS 22/07 10:29 Woolworths 2564 Cash Out,-2000
+                    [7] => V9956 20/07 North East Plaza Pty Hope Ref: 74940528201,-2500
+                    [8] => V9956 22/07 Home Improvement Pages Sydn Ref: 07090123604,-3050
+                    [9] => V9956 21/07 Wicked Beans Tall Ref: 74940528202,-5999
+                    [10] => V9956 19/07 Rebel Robina Robi Ref: 74564458201,
                 )
 
         )
 
     [2] => Array
         (
-            [date] => 1548248400
-            [closingBalance] => +139471
-            [difference] => 53896
+            [date] => 1532354400
+            [closingBalance] => +66239
+            [difference] => -15905
             [transactions] => Array
                 (
-                    [0] => 841G5824502155055L Aus Gov Families 015884,+63896
-                    [1] => Internet Bpay Go Mastercard 5218933519425010,-10000
+                    [0] => EFTPOS 24/07 12:21 J Park & D Odonnell,-500
+                    [1] => EFTPOS 24/07 12:14 Earth Markets Robina,-997
+                    [2] => EFTPOS 24/07 12:02 Bws 2813,-1200
+                    [3] => EFTPOS 24/07 09:06 McDonalds Elanora,-3170
+                    [4] => EFTPOS 24/07 11:58 Coles 4405,-5908
+                    [5] => V9956 22/07 Hj Burleigh West Burl Ref: 74564728204,-4130
                 )
 
         )
 
     [3] => Array
         (
-            [date] => 1548334800
-            [closingBalance] => +164410
-            [difference] => 24939
+            [date] => 1532440800
+            [closingBalance] => +70006
+            [difference] => 3767
             [transactions] => Array
                 (
-                    [0] => FB1G5862502155055L Aus Gov Families 015884,+5838
-                    [1] => 841G5862502155055L Aus Gov Families 015884,+29159
-                    [2] => EFTPOS 25/01 17:53 McDonalds Burlgh Wtr,-1060
-                    [3] => EFTPOS 25/01 17:38 Chempro Chemist Burl,-1949
-                    [4] => V3024 25/01 Afterpay Pty Ltd Melb Ref: 05060542725,-7049
+                    [0] => 000190012273 Ccs Ccs Payment 001248,+10519
+                    [1] => Brought forward EFTPOS 24/07 12:19 Aldi Stores - Elanor,-1347
+                    [2] => EFTPOS 24/07 12:08 Meat Smiths Pty Limi,-3655
+                    [3] => V9956 23/07 Earth N Sea Pizza Cool Ref: 74742728205,-1750
                 )
 
         )
 
     [4] => Array
         (
-            [date] => 1548680400
-            [closingBalance] => +19783
-            [difference] => -144627
+            [date] => 1532527200
+            [closingBalance] => +65686
+            [difference] => -4320
             [transactions] => Array
                 (
-                    [0] => Internet Bpay Tax Office Payments 573283892173060,-34900
-                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
-                    [2] => 187053726016619029 Allianz Insure 181547,-2065
-                    [3] => 179574 Exetel 251350,-2499
-                    [4] => EFTPOS 26/01 14:06 Brumbys The Pines,-400
-                    [5] => EFTPOS 26/01 14:08 Earth Markets Robina,-1098
-                    [6] => EFTPOS 26/01 14:02 Woolworths 2159,-3445
-                    [7] => V3024 25/01 Uber Eats Help.Uber.Com Sydn Ref: 74773889025,-2970
-                    [8] => V3024 25/01 Uber *eats Help Ref: 05211486455,-7600
-                    [9] => V3024 28/01 Afterpay Pty Ltd Melb Ref: 01060697068,-9650
+                    [0] => V9956 25/07 No Pong Crow Ref: 74617638206,-4320
                 )
 
         )
 
     [5] => Array
         (
-            [date] => 1548853200
-            [closingBalance] => +76024
-            [difference] => 56241
+            [date] => 1532613600
+            [closingBalance] => +44298
+            [difference] => -21388
             [transactions] => Array
                 (
-                    [1] => Rent,73000
-                    [2] => Water,89
-                    [3] => Interest Charged,5000
-                    [4] => Internet Transfer credit credit,11670
-                    [5] => EFTPOS 31/01 16:01 Woolworths 2159,
+                    [0] => 201814550775 Goodstart Currum 165969,-16388
+                    [1] => EFTPOS 26/07 15:57 Caltex Woolworths El,-5000
                 )
 
         )
 
     [6] => Array
         (
-            [date] => 1548939600
-            [closingBalance] => +65064
-            [difference] => -10960
+            [date] => 1532872800
+            [closingBalance] => +76339
+            [difference] => 32041
             [transactions] => Array
                 (
-                    [0] => 1004846906140 Paypal Australia 279234,-2865
-                    [1] => EFTPOS 01/02 14:14 Pillow Talk Pty Ltd,-8095
+                    [0] => FB1G1074502155055L Aus Gov Families 015884,+5838
+                    [1] => 841G1074502155055L Aus Gov Families 015884,+29054
+                    [2] => Internet Transfer Wage wage,+88000
+                    [3] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [4] => 187053726016018211 Allianz Insure 181547,-2065
+                    [5] => 179574 Exetel 251350,-2999
+                    [6] => EFTPOS 30/07 13:52 Coles 4474,-5787
                 )
 
         )
 
     [7] => Array
         (
-            [date] => 1549198800
-            [closingBalance] => +63646
-            [difference] => -1418
+            [date] => 1532959200
+            [closingBalance] => +55114
+            [difference] => -21225
             [transactions] => Array
                 (
-                    [0] => 93432d31333f76c828 Raiz Investment 342120,-1418
+                    [0] => EFTPOS 31/07 10:20 McDonalds Elanora,-2655
+                    [1] => EFTPOS 30/07 12:33 Pizza HUT Kirra,-5235
+                    [2] => V9956 28/07 Avis Australia Masc Ref: 74564728211,-13335
                 )
 
         )
 
     [8] => Array
         (
-            [date] => 1549285200
-            [closingBalance] => +48363
-            [difference] => -15283
+            [date] => 1533045600
+            [closingBalance] => +28902
+            [difference] => -26212
             [transactions] => Array
                 (
-                    [0] => EFTPOS 05/02 14:42 Caltex Elanora,-5000
-                    [1] => EFTPOS 05/02 12:46 Woolworths 2159,-5313
-                    [2] => V9956 04/02 2CO.COM*BUDGETNODE 4420 Ref: 74766689035 Frgn Amt: 6.99 US dollar,-970
-                    [3] => V9956 04/02 Ezi*make-A-Wish Aus Crem Ref: 74564729035,-4000
+                    [0] => Internet Transfer credit payment credit payment,-5000
+                    [1] => c23c08136c3d85dfd4 Raiz Maint Fee 342120,-125
+                    [2] => 1003568682785 Paypal Australia 279234,-2854
+                    [3] => EFTPOS 01/08 09:02 McDonalds Elanora,-1205
+                    [4] => EFTPOS 01/08 16:31 McDonalds Elanora,-1390
+                    [5] => EFTPOS 01/08 16:19 Pline Elanora,-2998
+                    [6] => EFTPOS 01/08 16:11 Coles 4405,-12640
                 )
 
         )
 
     [9] => Array
         (
-            [date] => 1549371600
-            [closingBalance] => +43314
-            [difference] => -5049
+            [date] => 1533132000
+            [closingBalance] => +25112
+            [difference] => -3790
             [transactions] => Array
                 (
-                    [0] => V9956 04/02 Foreign Currency Tran Fee 74766689035,-29
-                    [1] => b1fd3eea160cec0974 Raiz Maint Fee 342120,-125
-                    [2] => EFTPOS 05/02 12:15 Master Meats Elanora,-2195
-                    [3] => V9956 05/02 Dbs*village Theme Park Oxen Ref: 74564729036,-2700
+                    [0] => Internet Transfer Wage Wage,+88000
+                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [2] => EFTPOS 02/08 09:55 Caltex Elanora,-2000
+                    [3] => EFTPOS 02/08 14:06 Coles 4405,-3840
+                    [4] => EFTPOS 02/08 13:40 Sushi Train Elanora,-5950
                 )
 
         )
 
     [10] => Array
         (
-            [date] => 1549458000
-            [closingBalance] => +32847
-            [difference] => -10467
+            [date] => 1533218400
+            [closingBalance] => +18956
+            [difference] => -6156
             [transactions] => Array
                 (
-                    [0] => EFTPOS 06/02 18:19 Bws 2819,-2000
-                    [1] => V3024 07/02 Afterpay Pty Ltd Melb Ref: 04061147541,-8467
+                    [0] => e13ac9d76a5ff22913 Raiz Investment 342120,-2156
+                    [1] => V9956 02/08 Ezi*make-A-Wish Aus Crem Ref: 74564728214,-4000
                 )
 
         )
 
     [11] => Array
         (
-            [date] => 1549803600
-            [closingBalance] => +74896
-            [difference] => 42049
+            [date] => 1533477600
+            [closingBalance] => +98026
+            [difference] => 79070
             [transactions] => Array
                 (
-                    [0] => FB1G6242502155055L Aus Gov Families 015884,+5838
-                    [1] => 841G6242502155055L Aus Gov Families 015884,+29159
-                    [2] => Internet Transfer wage wage,-49000
-                    [3] => Cash Deposit,-80000
-                    [4] => Internet Bpay Tax Office Payments 573283892173060,-34900
-                    [5] => Internet Transfer Rent 1Holbrookwayelan,-80000
-                    [6] => V3024 09/02 Afterpay Pty Ltd Melb Ref: 06060676255,-7048
+                    [0] => Cash Deposit,+120000
+                    [1] => 000230008095 Ccs Ccs Payment 001248,+15647
+                    [2] => EFTPOS 05/08 17:41 Woolworths 2159,-2215
+                    [3] => EFTPOS 06/08 17:34 Woolworths 2159,-2984
+                    [4] => EFTPOS 05/08 15:30 Caltex Elanora,-5000
+                    [5] => EFTPOS 04/08 14:38 Woolworths 2159,-5228
+                    [6] => V9956 06/08 Thrifty Car Rentals Cool Ref: 01170651248,-20000
+                    [7] => V9956 06/08 Thrifty Car Rentals Cool Ref: 01170303078,-21150
                 )
 
         )
 
     [12] => Array
         (
-            [date] => 1549890000
-            [closingBalance] => +72831
-            [difference] => -2065
+            [date] => 1533564000
+            [closingBalance] => +83589
+            [difference] => -14437
             [transactions] => Array
                 (
-                    [0] => 187053726018019043 Allianz Insure 181547,-2065
+                    [0] => EFTPOS 07/08 15:10 McDonalds Elanora,-1720
+                    [1] => V9956 06/08 Dbs*village Theme Park Oxen Ref: 74564728218,-2700
+                    [2] => V9956 06/08 Otpp Go Mcd Dock Ref: 74564728218,-10017
                 )
 
         )
 
     [13] => Array
         (
-            [date] => 1549976400
-            [closingBalance] => +67300
-            [difference] => -5531
+            [date] => 1546261200
+            [closingBalance] => +2384
+            [difference] => -81205
             [transactions] => Array
                 (
-                    [0] => V9956 09/02 QBE Ins (aust) Ltd Sydn Ref: 74564729042,-5531
+                    [0] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [1] => EFTPOS 08/08 08:47 McDonalds Elanora,-1205
                 )
 
         )
 
     [14] => Array
         (
-            [date] => 1550062800
-            [closingBalance] => +57900
-            [difference] => -9400
+            [date] => 1533736800
+            [closingBalance] => +2005
+            [difference] => -379
             [transactions] => Array
                 (
-                    [0] => Rent and Water,+73000
-                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
-                    [2] => V9956 14/02 Vaya Pty Ltd Bura Ref: 04061288462,-2400
+                    [0] => Internet Transfer credit credit,+2000
+                    [1] => Internet Transfer credit credit,+4000
+                    [2] => EFTPOS 09/08 15:07 Ww Petrol 2215,-6379
                 )
 
         )
 
     [15] => Array
         (
-            [date] => 1550149200
-            [closingBalance] => +22400
-            [difference] => -35500
+            [date] => 1533823200
+            [closingBalance] => +165177
+            [difference] => 163172
             [transactions] => Array
                 (
-                    [0] => Internet Transfer Wage Wage,+44500
-                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [0] => Internet Transfer Wage wage,+176000
+                    [1] => 201815423132 Goodstart Currum 165969,-6620
+                    [2] => V9956 09/08 2CO.COM*BUDGETNOD 4420 Ref: 74766688221 Frgn Amt: 4.99 US dollar,-677
+                    [3] => V9956 08/08 QBE Ins (aust) Ltd Sydn Ref: 74564728221,-5531
                 )
 
         )
 
     [16] => Array
         (
-            [date] => 1550408400
-            [closingBalance] => +98508
-            [difference] => 76108
+            [date] => 1534082400
+            [closingBalance] => +48059
+            [difference] => -117118
             [transactions] => Array
                 (
-                    [0] => Internet Transfer Wage wage,+99000
-                    [1] => Internet Transfer GST GST,-10000
-                    [2] => 0b3b2e579ed6c8db0c Raiz Investment 342120,-1081
-                    [3] => EFTPOS 16/02 10:23 Woolworths 2159,-775
-                    [4] => EFTPOS 16/02 09:29 A&k Pharm Pty Ltd,-5336
-                    [5] => V9956 15/02 Slsf Donations Bowe Ref: 74564729046,-2000
-                    [6] => Brought forward V9956 15/02 Life Education Centre Broa Ref: 74940529046,-3700
+                    [0] => FB1G1454502155055L Aus Gov Families 015884,+5838
+                    [1] => 841G1454502155055L Aus Gov Families 015884,+29054
+                    [2] => V9956 09/08 Foreign Currency Tran Fee 74766688221,-020
+                    [3] => Internet Transfer credit credit,-5000
+                    [4] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [5] => 187053726017418225 Allianz Insure 181547,-2065
+                    [6] => EFTPOS 13/08 13:05 Earth Markets Burlei,-299
+                    [7] => EFTPOS 11/08 10:30 Mr Buttergoods :),-500
+                    [8] => EFTPOS 11/08 13:11 Brumbys The Pines,-1140
+                    [9] => EFTPOS 13/08 13:07 Bakers Delight,-1260
+                    [10] => EFTPOS 12/08 17:46 Sushi Train Elanora,-1300
+                    [11] => EFTPOS 11/08 10:29 Mr Buttergoods :),-2460
+                    [12] => EFTPOS 12/08 17:40 Coles 4405,-4192
+                    [13] => EFTPOS 11/08 22:24 Sonty Pty Ltd,-10950
+                    [14] => WBC ATM 11th16:33 Ent 4,-20000
+                    [15] => WBC ATM 11th16:33 Ent 4 Dir Chg Oth ATM,-300
+                    [16] => V9956 12/08 Code With Mosh Teac Ref: 24492158224 Frgn Amt: 10.00 US dollar,-1374
+                    [17] => V9956 13/08 Thrifty Car Rentals Cool Ref: 01171423328,-21150
                 )
 
         )
 
     [17] => Array
         (
-            [date] => 1550494800
-            [closingBalance] => +89647
-            [difference] => -8861
+            [date] => 1534168800
+            [closingBalance] => +43748
+            [difference] => -4311
             [transactions] => Array
                 (
-                    [0] => EFTPOS 19/02 12:24 Supreme Kebab,-1090
-                    [1] => EFTPOS 19/02 12:21 Woolworths 2159,-7771
+                    [0] => V9956 12/08 Foreign Currency Tran Fee 24492158224,-41
+                    [1] => V9956 14/08 Coles 4405 Elan Ref: 74363968226,-1645
+                    [2] => V9956 14/08 Vaya Pty Ltd Bura Ref: 02090834963,-2625
                 )
 
         )
 
     [18] => Array
         (
-            [date] => 1550581200
-            [closingBalance] => +77882
-            [difference] => -11765
+            [date] => 1534255200
+            [closingBalance] => +33662
+            [difference] => -10086
             [transactions] => Array
                 (
-                    [0] => EFTPOS 20/02 18:18 Sushi Train Elanora,-4250
-                    [1] => V9956 18/02 QBE Ins (aust) Ltd Sydn Ref: 74564729050,-7515
+                    [0] => 9c75bd9bdaadc655bf Raiz Investment 342120,-2121
+                    [1] => Brought forward V9956 14/08 Ww 2159 The Pines Elan Ref: 02193553183,-1210
+                    [2] => V9956 14/08 Bws Liquor 2813 Elan Ref: 02193751346,-2180
+                    [3] => V9956 14/08 Ww 2159 The Pines Elan Ref: 02182738026,-2235
+                    [4] => V9956 14/08 Hidden Perk Burl Ref: 74940528226,-2340
                 )
 
         )
 
     [19] => Array
         (
-            [date] => 1550667600
-            [closingBalance] => +58892
-            [difference] => -18990
+            [date] => 1534341600
+            [closingBalance] => +23517
+            [difference] => -10145
             [transactions] => Array
                 (
-                    [0] => EFTPOS 21/02 15:56 Meat and Fruit Marke,-2161
-                    [1] => EFTPOS 21/02 08:16 Caltex Elanora,-5000
-                    [2] => V9956 20/02 Ambarella Fine Foods Burl Ref: 74940529051,-1199
-                    [3] => V3024 21/02 Uber *eats Help Ref: 04151011636,-4800
-                    [4] => V9956 20/02 Ambarella Fine Foods Burl Ref: 74940529051,-5830
+                    [0] => EFTPOS 15/08 13:24 Elegant Eyebrows Aus,-2000
+                    [1] => V9956 15/08 Dept Of Coffee Palm Be Palm Ref: 74199748227,-950
+                    [2] => V9956 14/08 McDonalds Elanora Elan Ref: 74564728227,-1495
+                    [3] => V9956 15/08 Slsf Donations Bowe Ref: 74564728227,-2000
+                    [4] => V9956 15/08 Life Education Centre Broa Ref: 74940528227,-3700
                 )
 
         )
 
     [20] => Array
         (
-            [date] => 1550754000
-            [closingBalance] => +46509
-            [difference] => -12383
+            [date] => 1534428000
+            [closingBalance] => +57517
+            [difference] => 34000
             [transactions] => Array
                 (
-                    [0] => V9956 22/02 Home Improvement Pages Sydn Ref: 05021897725,-2500
-                    [1] => V9956 21/02 Ww 2159 The Pines Elan Ref: 04194244378,-4233
-                    [2] => V9956 20/02 Mikes Kitchen Merr Ref: 74564729052,-5650
+                    [0] => Internet Transfer Wage Wage,+44000
+                    [1] => EFTPOS 17/08 11:57 Caltex Elanora,-5000
+                    [2] => ANZ ATM 17th12:00 Elanora Caltex,-5000
                 )
 
         )
 
     [21] => Array
         (
-            [date] => 1551013200
-            [closingBalance] => +20302
-            [difference] => -26207
+            [date] => 1534687200
+            [closingBalance] => +35069
+            [difference] => -22448
             [transactions] => Array
                 (
-                    [0] => FB1G6622502155055L Aus Gov Families 015884,+5838
-                    [1] => 841G6622502155055L Aus Gov Families 015884,+29159
-                    [2] => Internet Transfer Wage wage,-88000
-                    [3] => Internet Bpay Tax Office Payments 573283892173060,-34900
-                    [4] => Internet Transfer Rent 1Holbrookwayelan,-80000
-                    [5] => EFTPOS 25/02 20:48 7 Day Amcal Palm Bea,-1499
-                    [6] => EFTPOS 25/02 14:21 Mode Tendance Pty Lt,-1720
-                    [7] => EFTPOS 22/02 14:16 Elegant Eyebrows Aus,-2000
-                    [8] => EFTPOS 25/02 14:03 Woolworths 2159,-6459
-                    [9] => Bbl ATM 25th16:22 Np - Spar Express Ta,-6000
-                    [10] => Bbl ATM 25th16:22 Np - Spar Express Ta Dir Chg Oth ATM,-250
-                    [11] => V9956 23/02 Bakers Delight Robina Robi Ref: 74940529054,-930
-                    [12] => V9956 21/02 Aldi Stores - Elanora Elan Ref: 74940529053,-1541
-                    [13] => V9956 22/02 Supreme Kebab Elan Ref: 74742729053,-2540
-                    [14] => V9956 23/02 Kmart 1125 Elan Ref: 74363969054,-3815
-                    [15] => V9956 23/02 Sushi Train Elanora Elan Ref: 74742729055,-7550
+                    [0] => EFTPOS 19/08 15:49 Earth Markets Robina,-1298
+                    [1] => V9956 20/08 Thrifty Car Rentals Cool Ref: 01170128845,-21150
                 )
 
         )
 
     [22] => Array
         (
-            [date] => 1551099600
-            [closingBalance] => +12702
-            [difference] => -7600
+            [date] => 1534773600
+            [closingBalance] => +87569
+            [difference] => 52500
             [transactions] => Array
                 (
-                    [0] => 187053726019619057 Allianz Insure 181547,-2065
-                    [1] => EFTPOS 25/02 14:14 Master Meats Elanora,-5535
+                    [0] => Internet Transfer Wage Wage,+132500
+                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
                 )
 
         )
 
     [23] => Array
         (
-            [date] => 1551186000
-            [closingBalance] => +2144
-            [difference] => -10558
+            [date] => 1534860000
+            [closingBalance] => +78137
+            [difference] => -9432
             [transactions] => Array
                 (
-                    [0] => Internet Transfer 0997642876M,-2700
-                    [1] => b2c4ebe9cc790f1042 Raiz Investment Brought forward 342120,-1173
-                    [2] => V3024 27/02 Uber *eats Help Ref: 03193361364,-6685
+                    [0] => V9956 22/08 Home Improvement Pages Sydn Ref: 03091237440,-2500
+                    [1] => V9956 20/08 QBE Ins (aust) Ltd Sydn Ref: 74564728233,-6932
                 )
 
         )
 
     [24] => Array
         (
-            [date] => 1551272400
-            [closingBalance] => +68885
-            [difference] => 66741
+            [date] => 1534946400
+            [closingBalance] => +70339
+            [difference] => -7798
             [transactions] => Array
                 (
-                    [0] => Rent and Water,+73000
-                    [1] => 179574 Exetel 251350,-2499
-                    [2] => EFTPOS 28/02 13:30 Sushi Train Elanora,-3760
+                    [0] => EFTPOS 23/08 08:38 Caltex Elanora,-5000
+                    [1] => V9956 22/08 Anacnda Wst Brlgh West Ref: 03182895014,-2798
                 )
 
         )
 
     [25] => Array
         (
-            [date] => 1551358800
-            [closingBalance] => +156657
-            [difference] => 87772
+            [date] => 1535032800
+            [closingBalance] => +63715
+            [difference] => -6624
             [transactions] => Array
                 (
-                    [0] => Internet Transfer wage wage,+99000
-                    [1] => Internet Transfer credit credit,-10000
-                    [2] => V9956 28/02 Ww 2159 The Pines Elan Ref: 04211406508,-1228
+                    [0] => 201816269693 Goodstart Currum 165969,-6624
                 )
 
         )
 
     [26] => Array
         (
-            [date] => 1551618000
-            [closingBalance] => +24371
-            [difference] => -132286
+            [date] => 1535292000
+            [closingBalance] => +53198
+            [difference] => -10517
             [transactions] => Array
                 (
-                    [0] => Internet Bpay Citibank Creditcards 5430600022113829,-12000
-                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
-                    [2] => 474edfcf9fe72dc7e0 Raiz Maint Fee 342120,-125
-                    [3] => d206236254906e4141 Raiz Investment 342120,-1213
-                    [4] => 1005081911738 Paypal Australia 279234,-2864
-                    [5] => EFTPOS 03/03 12:52 Bakers Delight,-630
-                    [6] => EFTPOS 03/03 12:51 Earth Markets Burlei,-999
-                    [7] => EFTPOS 03/03 15:59 Woolworths 2159,-1025
-                    [8] => EFTPOS 02/03 22:56 McDonalds Tugun,-1075
-                    [9] => EFTPOS 03/03 12:45 Oporto - Burleigh He,-2800
-                    [10] => EFTPOS 02/03 09:03 McDonalds Elanora,-3250
-                    [11] => EFTPOS 03/03 12:44 Oporto - Burleigh He,-3300
-                    [12] => EFTPOS 03/03 18:51 Happy Kitchen,-4325
-                    [13] => EFTPOS 03/03 16:11 Caltex Elanora,-5000
-                    [14] => Bbl ATM 04th16:18 Np - Spar Express Ta,-4000
-                    [15] => Bbl ATM 04th16:18 Np - Spar Express Ta Dir Chg Oth ATM,-250
-                    [16] => V9956 28/02 McDonalds Palm Beach Palm Ref: 74564729060,-895
-                    [17] => V3024 01/03 Uber *eats Help Ref: 05220941837,-8535
+                    [0] => FB1G1834502155055L Aus Gov Families 015884,+5838
+                    [1] => 841G1834502155055L Aus Gov Families 015884,+29054
+                    [2] => EFTPOS 27/08 12:02 Rebel Burleigh West,-15999
+                    [3] => V3024 26/08 Uber *eats Pnjch Help Ref: 07134304601,-8260
+                    [4] => V9956 27/08 Thrifty Car Rentals Cool Ref: 01171268846,-21150
                 )
 
         )
 
     [27] => Array
         (
-            [date] => 1551704400
-            [closingBalance] => +90842
-            [difference] => 66471
+            [date] => 1535378400
+            [closingBalance] => +44499
+            [difference] => -8699
             [transactions] => Array
                 (
-                    [0] => Internet Transfer Wage Wage,+88000
-                    [1] => EFTPOS 04/03 10:24 KFC Robina,-3085
-                    [2] => EFTPOS 05/03 18:23 Coles 4405,-8844
-                    [3] => V9956 04/03 Ezi*make-A-Wish Aus Crem Ref: 74564729063,-4000
-                    [4] => V3024 05/03 Uber *eats Help Ref: 02171148996,-5600
+                    [0] => 187053726019118240 Allianz Insure 181547,-2065
+                    [1] => 179574 Exetel 251350,-2999
+                    [2] => EFTPOS 28/08 17:25 McDonalds Elanora,-3635
                 )
 
         )
 
     [28] => Array
         (
-            [date] => 1551790800
-            [closingBalance] => +61641
-            [difference] => -29201
+            [date] => 1535464800
+            [closingBalance] => +38424
+            [difference] => -6075
             [transactions] => Array
                 (
-                    [0] => EFTPOS 05/03 18:28 Aldi Stores - Elanor,-848
-                    [1] => EFTPOS 05/03 19:18 Woolworths 2159,-1350
-                    [2] => EFTPOS 06/03 15:41 Ambarella Fine Foods,-20548
-                    [3] => V9956 05/03 BP Connect 1933 Uppe Ref: 02211062032,-450
-                    [4] => V9956 05/03 Dbs*village Theme Park Oxen Ref: 74564729064,-2700
-                    [5] => V9956 04/03 Dominos Pizza Burl Ref: 74564729064,-3305
+                    [0] => Internet Transfer Wage wage,+44000
+                    [1] => V3024 28/08 Card Payment Fee ATO Sydn Ref: 74564458240,-75
+                    [2] => V3024 28/08 ATO Payment Sydn Ref: 74564458240,-50000
                 )
 
         )
 
     [29] => Array
         (
-            [date] => 1551877200
-            [closingBalance] => +41780
-            [difference] => -19861
+            [date] => 1535637600
+            [closingBalance] => -1011
+            [difference] => -39435
             [transactions] => Array
                 (
-                    [0] => EFTPOS 07/03 15:23 Woolworths 2159,-385
-                    [1] => EFTPOS 07/03 15:24 J Park & D Odonnell,-1090
-                    [2] => EFTPOS 07/03 14:15 McDonalds Elanora,-1115
-                    [3] => EFTPOS 07/03 17:36 McDonalds Elanora,-1630
-                    [4] => EFTPOS 07/03 18:16 Caltex Elanora,-5001
-                    [5] => EFTPOS 07/03 18:43 Lucky Buddha Thai Re,-8240
-                    [6] => V9956 05/03 Sushi Tree Pty Ltd Burl Brought forward Ref: 74564459065,-2400
+                    [0] => NABATM Dep 31st10:09 Palm Beach,+50000
+                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [2] => EFTPOS 31/08 18:18 Caltex Elanora,-2000
+                    [3] => EFTPOS 31/08 15:25 Woolworths 2159,-7435
                 )
 
         )
 
     [30] => Array
         (
-            [date] => 1551963600
-            [closingBalance] => +37515
-            [difference] => -4265
+            [date] => 1535896800
+            [closingBalance] => +14853
+            [difference] => 15864
             [transactions] => Array
                 (
-                    [0] => EFTPOS 08/03 16:13 Clearskincare Sthpor,-1000
-                    [1] => EFTPOS 07/03 18:47 Bws 2810,-2000
-                    [2] => V9956 06/03 McDonalds Virginia Virg Ref: 74564729066,-1265
+                    [0] => Please Note From 31 Aug 2018 Your Debit Int Rate Is 15.41% Brought forward Cash Deposit,+120000
+                    [1] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [2] => 06537d1809b59677e9 Raiz Maint Fee 342120,-125
+                    [3] => 1003760900793 Paypal Australia 279234,-2861
+                    [4] => V9956 03/09 Thrifty Car Rentals Cool Ref: 01170614299,-6043
+                    [5] => V9956 03/09 Thrifty Car Rentals Cool Ref: 01170615002,-15107
                 )
 
         )
 
     [31] => Array
         (
-            [date] => 1552222800
-            [closingBalance] => +47095
-            [difference] => 9580
+            [date] => 1535983200
+            [closingBalance] => +10853
+            [difference] => -4000
             [transactions] => Array
                 (
-                    [0] => FB1G7002502155055L Aus Gov Families 015884,+5838
-                    [1] => 841G7002502155055L Aus Gov Families 015884,+29159
-                    [2] => Internet Transfer wage wage,+143000
-                    [3] => Internet Bpay Tax Office Payments 573283892173060,-34900
-                    [4] => Internet Transfer GST GST,-15000
-                    [5] => Internet Transfer water 1Holbrookwaywate,-10000
-                    [6] => Internet Transfer Rent 1Holbrookwayelan,-80000
-                    [7] => 025928c91da29f8d9b Raiz Investment 342120,-1380
-                    [8] => EFTPOS 09/03 18:07 Silver Thai Restaura,-1820
-                    [9] => EFTPOS 09/03 18:05 Fat Chicken West Bur,-3490
-                    [10] => V9956 07/03 McDonalds Palm Beach Palm Ref: 74564729067,-1130
-                    [11] => V3024 08/03 Uber Eats Help.Uber.Com Sydn Ref: 74773889067,-3550
-                    [12] => V9956 08/03 Priceline Aust Fair Sout Ref: 74564729067,-4552
-                    [13] => V9956 08/03 Chikor Pty Ltd Sout Ref: 74940529067,-4950
-                    [14] => V9956 10/03 Coles 4405 Elan Ref: 74363969069,-7645
+                    [0] => V9956 03/09 Ezi*make-A-Wish Aus Crem Ref: 74564728246,-4000
                 )
 
         )
 
     [32] => Array
         (
-            [date] => 1552309200
-            [closingBalance] => +24935
-            [difference] => -22160
+            [date] => 1536069600
+            [closingBalance] => +5393
+            [difference] => -5460
             [transactions] => Array
                 (
-                    [0] => 187053726011219071 Allianz Insure 181547,-2065
-                    [1] => EFTPOS 12/03 16:04 Coles 4427,-6124
-                    [2] => V9956 12/03 Zambrero Tugun Tugu Ref: 02150659314,-3570
-                    [3] => V3024 12/03 Uber Eats Help.Uber.Com Sydn Ref: 74773889071,-4870
-                    [4] => V9956 09/03 QBE Ins (aust) Ltd Sydn Ref: 74564729070,-5531
+                    [0] => EFTPOS 05/09 09:07 McDonalds Elanora,-1875
+                    [1] => V9956 03/09 Dominos Pizza Burl Ref: 74564728247,-3585
                 )
 
         )
 
     [33] => Array
         (
-            [date] => 1552395600
-            [closingBalance] => +81505
-            [difference] => 56570
+            [date] => 1536156000
+            [closingBalance] => +2693
+            [difference] => -2700
             [transactions] => Array
                 (
-                    [0] => NABATM Dep 13th10:38 West Lakes Bran Rent,+70000
-                    [1] => 8ef0a3fc6486e3a064 Raiz Investment 342120,-1109
-                    [2] => EFTPOS 13/03 15:43 Caltex Elanora,-3000
-                    [3] => EFTPOS 13/03 16:36 Target 5126,-3600
-                    [4] => EFTPOS 13/03 16:21 Myer Robina,-4796
-                    [5] => V9956 11/03 McDonalds Jimboomba Jimb Ref: 74564729071,-925
+                    [0] => V9956 05/09 Dbs*village Theme Park Oxen Ref: 74564728248,-2700
                 )
 
         )
 
     [34] => Array
         (
-            [date] => 1552482000
-            [closingBalance] => +50795
-            [difference] => -30710
+            [date] => 1536242400
+            [closingBalance] => -3931
+            [difference] => -6624
             [transactions] => Array
                 (
-                    [0] => Internet Transfer credit credit,-2500
-                    [1] => EFTPOS 13/03 15:28 KFC Robina,-1910
-                    [2] => Brought forward EFTPOS 14/03 19:12 Bin 72,-5300
-                    [3] => EFTPOS 14/03 12:32 Mecca Maxima Robina,-6000
-                    [4] => EFTPOS 14/03 12:31 Sephora Australia,-12600
-                    [5] => V9956 14/03 Vaya Pty Ltd Bura Ref: 04061196612,-2400
+                    [0] => 201817114516 Goodstart Currum 165969,-6624
                 )
 
         )
 
     [35] => Array
         (
-            [date] => 1552568400
-            [closingBalance] => +35760
-            [difference] => -15035
+            [date] => 1536501600
+            [closingBalance] => +79206
+            [difference] => 83137
             [transactions] => Array
                 (
-                    [0] => Internet Transfer credit credit,-3800
-                    [1] => EFTPOS 14/03 11:01 KFC Robina,-915
-                    [2] => EFTPOS 15/03 08:02 Kmart 1125,-915
-                    [3] => EFTPOS 14/03 22:08 Bin 72,-3200
-                    [4] => EFTPOS 15/03 12:06 Russian Delight,-4080
-                    [5] => V9956 14/03 Fosters Bakery Nobb Ref: 74742729073,-970
-                    [6] => V9956 15/03 Coles 4405 Elan Ref: 74363969074,-1155
+                    [0] => Please Note From 07 Sep 2018 Your Debit Int Rate Is 15.41% FB1G2214502155055L Aus Gov Families 015884,+5838
+                    [1] => 841G2214502155055L Aus Gov Families 015884,+29054
+                    [2] => Internet Transfer Wage Wage,+88000
+                    [3] => EFTPOS 10/09 13:10 Brumbys The Pines,-2240
+                    [4] => EFTPOS 08/09 09:51 Bed Bath N Table,-10985
+                    [5] => V3024 08/09 Uber *eats LXEI5 Help Ref: 06211122862,-5380
+                    [6] => V9956 10/09 Thrifty Car Rentals Cool Ref: 01170741880,-21150
                 )
 
         )
 
     [36] => Array
         (
-            [date] => 1552827600
-            [closingBalance] => +15121
-            [difference] => -20639
+            [date] => 1536588000
+            [closingBalance] => +62085
+            [difference] => -17121
             [transactions] => Array
                 (
-                    [0] => fc5bd722dd24bf898b Raiz Investment 342120,-1238
-                    [1] => EFTPOS 17/03 12:20 Woolworths 2603,-3314
-                    [2] => EFTPOS 17/03 11:47 Fat Chicken West Bur,-5050
-                    [3] => V9956 17/03 Ww 2159 The Pines Elan Ref: 07121200935,-87
-                    [4] => V9956 16/03 Ww 2159 The Pines Elan Ref: 06182924702,-1570
-                    [5] => V9956 15/03 Slsf Donations Bowe Ref: 74564729074,-2000
-                    [6] => V9956 15/03 Bws Liquor 2813 Elan Ref: 05193956092,-3680
-                    [7] => V9956 15/03 Life Education Centre Broa Ref: 74940529074,-3700
+                    [0] => 187053726010718254 Allianz Insure 181547,-2065
+                    [1] => EFTPOS 11/09 12:30 Earth Markets Robina,-848
+                    [2] => EFTPOS 11/09 17:13 McDonalds Elanora,-880
+                    [3] => EFTPOS 11/09 12:33 Brumbys The Pines,-1020
+                    [4] => EFTPOS 11/09 12:07 Woolworths 2159,-4706
+                    [5] => EFTPOS 10/09 20:20 Woolworths 2159,-6899
+                    [6] => V9956 09/09 Budgetnode Amst Ref: 74766688253 Frgn Amt: 4.99 US dollar,-703
                 )
 
         )
 
     [37] => Array
         (
-            [date] => 1552914000
-            [closingBalance] => +10941
-            [difference] => -4180
+            [date] => 1536674400
+            [closingBalance] => +52913
+            [difference] => -9172
             [transactions] => Array
                 (
-                    [0] => EFTPOS 19/03 15:21 McDonalds Elanora,-585
-                    [1] => EFTPOS 19/03 15:15 McDonalds Elanora,-3595
+                    [0] => V9956 09/09 Foreign Currency Tran Fee 74766688253,-21
+                    [1] => EFTPOS 12/09 06:59 McDonalds Elanora,-880
+                    [2] => EFTPOS 11/09 12:23 Aldi Stores - Elanor,-2740
+                    [3] => V9956 10/09 QBE Ins (aust) Ltd Sydn Ref: 74564728254,-5531
                 )
 
         )
 
     [38] => Array
         (
-            [date] => 1553000400
-            [closingBalance] => +3426
-            [difference] => -7515
+            [date] => 1536847200
+            [closingBalance] => +32163
+            [difference] => -20750
             [transactions] => Array
                 (
-                    [0] => V9956 18/03 QBE Ins (aust) Ltd Sydn Ref: 74564729078,-7515
+                    [0] => Water,+5000
+                    [1] => Rent,+63400
+                    [2] => Internet Transfer Rent 1Holbrookwayelan,-80000
+                    [3] => Brought forward EFTPOS 14/09 19:22 Golden Pine Chinese,-6550
+                    [4] => V9956 14/09 Vaya Pty Ltd Bura Ref: 05103677080,-2600
                 )
 
         )
 
     [39] => Array
         (
-            [date] => 1553086800
-            [closingBalance] => -408
-            [difference] => -3834
+            [date] => 1537106400
+            [closingBalance] => +27103
+            [difference] => -5060
             [transactions] => Array
                 (
-                    [0] => Internet Transfer credit credit,-2500
-                    [1] => 4e9833935bc773da85 Raiz Investment 342120,-1334
+                    [0] => V3024 15/09 Uber Eats CPGO2 Help.Ubersydn Ref: 74773888257,-5060
                 )
 
         )
 
     [40] => Array
         (
-            [date] => 1553173200
-            [closingBalance] => +11842
-            [difference] => 12250
+            [date] => 1537192800
+            [closingBalance] => +44253
+            [difference] => 17150
             [transactions] => Array
                 (
-                    [0] => Please Note From 21 Mar 2019 Your Debit Int Rate Is 15.41% Internet Transfer wage wage,+20000
-                    [1] => EFTPOS 22/03 12:42 Sushi Train Elanora,-5250
-                    [2] => V9956 22/03 Home Improvement Pages Sydn Ref: 05121748528,-2500
+                    [0] => Internet Transfer Wage Wage,+44000
+                    [1] => V9956 17/09 Slsf Donations Bowe Ref: 74564728260,-2000
+                    [2] => V9956 17/09 Life Education Centre Broa Ref: 74940528260,-3700
+                    [3] => V9956 17/09 Thrifty Car Rentals Cool Ref: 01182696343,-21150
+                )
+
+        )
+
+    [41] => Array
+        (
+            [date] => 1537279200
+            [closingBalance] => +82953
+            [difference] => 38700
+            [transactions] => Array
+                (
+                    [0] => NABATM Dep 19th09:32 Palm Beach,+44000
+                    [1] => V3024 19/09 Uber *eats VUS2Z Help Ref: 03104113724,-5300
+                )
+
+        )
+
+    [42] => Array
+        (
+            [date] => 1537365600
+            [closingBalance] => +69188
+            [difference] => -13765
+            [transactions] => Array
+                (
+                    [0] => EFTPOS 20/09 15:13 McDonalds Elanora,-2230
+                    [1] => V9956 19/09 Letz Party Pty Ltd Miam Ref: 74940528262,-4000
+                    [2] => V9956 18/09 QBE Ins (aust) Ltd Sydn Ref: 74564728262,-7535
+                )
+
+        )
+
+    [43] => Array
+        (
+            [date] => 1537452000
+            [closingBalance] => +62564
+            [difference] => -6624
+            [transactions] => Array
+                (
+                    [0] => 201817965454 Goodstart Currum 165969,-6624
                 )
 
         )

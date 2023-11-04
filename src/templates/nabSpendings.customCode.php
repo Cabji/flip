@@ -47,7 +47,7 @@ else
                 $a_result[$key]["closingBalance"] = $closingBalance;
 
                 // the regex catches foreign currency exchanges
-                $a_temp3 = preg_split("/((?<!Frgn Amt: )[\d,]+\.\d{2}(?!%))/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
+                $a_temp3 = preg_split("/(\b(?<!Frgn Amt: )[\d,]+\.\d{2}(?!%))/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
                 // $a_temp3 format is like this: 
                 //  array [0] = trx description A   [1] = -12.34
                 //        [2] = trx description B   [3] = +987.65
@@ -83,21 +83,19 @@ else
         $a_validateDates = array();
         $a_validateTRXs = array();
         $a_validateSigns = array();
-        echo "\n\t  • Calculating +/- signs for TRX values";
+        echo "\n\t  • Calculating +/- signs for TRX values (this could take a few minutes depending on the data)\n\t\t";
         // dev-note: &$trxEntry is passed by reference so we can update it in the foreach loop
         $signedValueSet = null;
         foreach ($a_result as $i => &$trxEntry)
         {
-            if ($i % 10 === 1) {echo "\n\t\t";}
+            if (($i+1) % 10 === 1) {echo "\n\t\t";}
             echo " [$i]";
-//            if ($i == 5) {print_r($trxEntry);}
             if ($trxEntry["date"] == "") {array_push($a_validateDates, $i); echo "D";}
             if (!array_key_exists("transactions", $trxEntry)) {$d .= "$tName.customCode.php (".__LINE__."): a_result[$i] has no transactions key\n";}
             else
             {
                 // grab the trx values from the trxEntry["transactions"] array and store in $signedValueSet array. array_values() reindexes the array to ensure we start from index [0]
                 $signedValueSet[$i] = array_map(function($value) {$parts = explode(",", $value); return intval(end($parts));}, array_values($trxEntry["transactions"]));
-//                if ($i == 5) {echo "  - trxEntry[difference]: $trxEntry[difference]\n  - signedValueSet[i]: \n"; print_r($signedValueSet[$i]); echo "\n";}
 
                 // temporarily hold the result because it can return false if the input valueSet is flawed
                 $result = signValues($trxEntry["difference"], $signedValueSet[$i]);
@@ -219,25 +217,6 @@ else
 //        print_r($a_validateTRXs);
 //        print_r($signedValueSet);
 //        print_r($a_result);
-/*
-        // now run the custom regexes as required
-        $c = 0;
-        foreach ($aa_template[$tName]["customRegexes"] as $regExp => $subExp) 
-        {
-            $c++;
-            $f = preg_replace($regExp,$subExp,$f);
-            // check if the regExp starts with a comment
-            if (preg_match('/^\/\(\?\#/', $regExp))
-            {
-                // pull the regex comment from the regex
-                if (preg_match('/^\/\(\?\#(.*?)\)/', $regExp, $matches)) {$regExpName = trim($matches[1]);}
-            } else {
-                $regExpName = "Regex $c";
-            }
-            echo "\n\t  • $regExpName";
-        }
-        unset($c);
-*/
     }
     echo "\n";
 }
