@@ -82,6 +82,7 @@ else
 
         $a_validateDates = array();
         $a_validateTRXs = array();
+        $a_validateSigns = array();
         echo "\n\t  • Calculating +/- signs for TRX values";
         // dev-note: &$trxEntry is passed by reference so we can update it in the foreach loop
         $signedValueSet = null;
@@ -128,26 +129,26 @@ else
                     }
                 }
                 // mark entries with more than 1 signed signedValueSet for human validation
-                if (sizeof($signedValueSet[$i]) > 1) {array_push($a_validateTRXs, $i); echo "V";}
+                if (sizeof($signedValueSet[$i]) > 1) {array_push($a_validateSigns, $i); echo "S";}
             }
         }
 
         // check if any valueSets need human verification
-        if (isset($a_validateDates) || isset($a_validateTRXs)) 
+        if (isset($a_validateDates) || isset($a_validateTRXs) || isset($a_validateSignss)) 
         {
-            $i_totalVerify = sizeof($a_validateDates) + sizeof ($a_validateTRXs);
+            $i_totalVerify = sizeof($a_validateDates) + sizeof ($a_validateTRXs) + sizeof ($a_validateSigns);
             if ($i_totalVerify >= 1) 
             {
 
                 echo "\n\t  • TRX value set verification";
                 echo "\n\t      There are ".$i_totalVerify." problems that require human verification.";
-                
+
+                include "$relativePath/include/fn-verifyUserInput.php";
                 if (sizeof($a_validateDates) >= 1)
                 {
-                    echo "\n\t\tDate Validation - these entries have a problem with the data value.";
+                    echo "\n\t\tDate Validation - these entries have a problem with the Date value.";
                     include "$relativePath/include/fn-validateDate.php";
-                    include "$relativePath/include/fn-verifyUserInput.php";
-                    // loop the date array first
+                    // loop the validate date array
                     foreach ($a_validateDates as $i => $index)
                     {
                         echo "\n\t\t  • Entry $index";
@@ -162,8 +163,21 @@ else
                             else {$verified = true;}
                         }
                         unset($verified);
-                        // apply validated date to the record in $a_result
-                        $a_result[$index]["date"] = $date;
+                        // apply validated date to the record in $a_result as unixtime stamp
+                        $a_result[$index]["date"] = strtotime($date);
+                    }
+                }
+
+                // validate signed valuesets that computer is unsure about and dubious trx values in general
+                if (sizeof($a_validateTRXs) >= 1)
+                {
+                    echo "\n\t\tTRX Values Validation - these entries have a problem with the TRX values/signs.";
+
+                    // loop the validate TRX array
+                    foreach ($a_validateTRXs as $i => $index)
+                    {
+                        echo "\n\t\t  • Entry $index";
+                        echo "\n\t\t    Content near these transactions: \n".print_r($a_result[$index],true)."\n";
                     }
                 }
             }
