@@ -31,7 +31,6 @@ else
             $c++;
         }
 
-        $a_result = null;
         // loop the resulting array and build the standard format array - a_temp2 is an array of values: [n] => [0] = nn Mon yyy [1] = trx data string [2] = closing balance
         echo "\n\t  • Building the standard format data array";
         foreach ($a_temp2 as $key => $data)
@@ -46,7 +45,7 @@ else
                 $closingBalance = str_replace(array(",", "."), "", trim(fnCrDrToSigned($data[2])));
                 $a_result[$key]["closingBalance"] = $closingBalance;
 
-                // the regex catches foreign currency exchanges
+                // the regex catches foreign currency exchanges and "cash out" at supermarket checkouts, both cause problems in parsing correctly
                 $a_temp3 = preg_split("/(\b(?<!(Frgn Amt: )|(Cash Out ))[\d,]+\.\d{2}(?!%))/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
                 // $a_temp3 format is like this: 
                 //  array [0] = trx description A   [1] = -12.34
@@ -226,12 +225,10 @@ else
             }
         }
 
-
-        $d .= print_r($a_result, true);
+//      debug stuff
 //        print_r($a_validateTRXs);
 //        print_r($signedValueSet);
 //        print_r($a_result);
     }
-    echo "\n";
 }
 ?>

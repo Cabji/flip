@@ -12,6 +12,7 @@ $arguments = array();
 $d = null;
 $o = null;
 $options = getopt("h:t:");
+$a_result = null;
 $aa_settings = array();
 // get the relative path of the working dir to the flip.php dir
 $relativePath = ".".substr(__DIR__, strlen(realpath($_SERVER['DOCUMENT_ROOT'])))."/";
@@ -68,6 +69,7 @@ $aa_settings["optionsPDFtoTextCmd"]         = "pdftotext -q -raw #INPUT# #OUTPUT
 $aa_settings["defaultOutputType"]           = "CSV";
 $aa_settings["defaultOutputFile"]           = "output/defaultOutput.file";
 $aa_settings["defaultCSVFields"]            = "bank,account,trxDate,trxDescription,trxValue";
+$aa_settings["defaultCSVDateFormat"]        = "d/m/Y";
 $aa_settings["defaultSqlite3TableName"]     = "trxdata";
 $aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
 
@@ -141,6 +143,62 @@ if (file_exists($relativePath."templates/$tName.customCode.php"))
 }
 else {echo "\n\t".$aa_Output["RedFail"]." running $tName custom proessing code - $relativePath.templates/$tName.customCode.php does not exist";}
 
+// now we should have standard format in $a_result that we can output
+$aa_settings["optionsOutputTypes"]          = "SQLite3, CSV";
+$aa_settings["defaultCSVFields"]            = "bank,account,trxDate,trxDescription,trxValue";
+
+$dateFormat = $aa_settings["defaultCSVDateFormat"];
+$sep = $aa_settings["optionsCSVSeperator"];
+
+if (isset($a_result) && count($a_result) >= 1)
+{
+    include "$relativePath/include/fn-verifyUserInput.php";
+    $bank = false;
+    $outputType = false;
+    $s_o = false;
+    $verified = false;
+    echo "\n\tOutput Processed Data\n"; 
+    // ask user for output options
+
+    // get output file name
+    while (!$outf || !$verified)
+    {
+        $outf = readline("  Output filename (Default: ".$aa_settings["defaultOutputFile"]."): ");
+        // verify user input call to custom func
+        if ($outf == "") {$outf = $aa_settings["defaultOutputFile"];}
+        if ($aa_template["$tName"]["verifyUserInput"]) {$verified = verifyUserInput($outf);}
+        else {$verified = true;}
+    }
+    $verified = false;
+
+    while ($outputType != "sqlite3" && $outputType != "csv")
+    {
+        $outputType = strtolower(readline("\n\t  Select output type (".$aa_settings["optionsOutputTypes"].") Default: [".$aa_settings["defaultOutputType"]."]: "));
+        if ($outputType == "") {$outputType = strtolower($aa_settings["defaultOutputType"]);}
+    }
+    if ($outputType == "csv")
+    {
+        $s_o .= $aa_settings["defaultCSVFields"]."\n";
+        foreach ($a_result as $i => $dateGroupData)
+        {
+            foreach ($dateGroupData["transactions"] as $j => $trxStr)
+            {
+                // explode the trxStr into trx description and trx value - note: 0 is trxVal and 1 is trxDesc because strrev()
+                $a_trxVal = explode(",",strrev($trxStr),2);
+                $a_trxVal[0] = strrev($a_trxVal[0]);
+                $a_trxVal[1] = strrev($a_trxVal[1]);
+                $dotPos = (strlen($a_trxVal[0]) - 2); // Calculate the position for the period
+                $a_trxVal[0] = substr_replace($a_trxVal[0], '.', $dotPos, 0);
+                $s_o .= "$bank$sep$tName$sep".date($dateFormat,$dateGroupData["date"])."$sep".$a_trxVal[1]."$sep".$a_trxVal[0]."\n";
+            }
+        }
+    }
+    if (file_put_contents($outf, $s_o)) {echo "Data wrote to output file successfully.\n";}
+    else {echo "Write data to file FAILED.\n";}
+}
+
+// debug output
+//$d .= print_r($a_result, true);
 
 echo "\n";
 file_put_contents($relativePath."../temp/debug.txt", $d);
