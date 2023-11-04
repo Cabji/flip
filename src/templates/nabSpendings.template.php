@@ -15,6 +15,10 @@ $aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)
                                         "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)\n([\d,]+\.\d{2}))|(( Brought forward )([\d,]+\.\d{2}) (Cr|Dr)))/is" => "$1#SEP#$3$9#SEP#$7$10 $6$11#DATEBREAK#\n",
                                         "/(?# Clean up excessive whitespace in all data)((?<!#DATEBREAK#)\s+)/is" => " ");
 
+$aa_template[$tName]["dateFormat"] = "Y-m-d";
+$aa_template[$tName]["dateFormat-Output"] = "YYYY-MM-DD";
+$aa_template[$tName]["verifyUserInput"] = true;
+
 // customRegexes are used in the template.customCode.php file after initial data processing
 $aa_template[$tName]["customRegexes"] = array("/(?# First regex in custom code)/is" => "");
 

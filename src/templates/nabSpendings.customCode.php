@@ -127,26 +127,47 @@ else
                         $trxStr = substr_replace($trxStr, $signedValueSet[$i][0][$j], strrpos($trxStr, ',') + 1);
                     }
                 }
+                // mark entries with more than 1 signed signedValueSet for human validation
+                if (sizeof($signedValueSet[$i]) > 1) {array_push($a_validateTRXs, $i); echo "V";}
+            }
+        }
+
+        // check if any valueSets need human verification
+        if (isset($a_validateDates) || isset($a_validateTRXs)) 
+        {
+            $i_totalVerify = sizeof($a_validateDates) + sizeof ($a_validateTRXs);
+            if ($i_totalVerify >= 1) 
+            {
+
+                echo "\n\t  • TRX value set verification";
+                echo "\n\t      There are ".$i_totalVerify." problems that require human verification.";
                 
-/*                
-                
-                foreach ($trxEntry["transactions"] as $j => $trxStr)
+                if (sizeof($a_validateDates) >= 1)
                 {
-                    // update the trxEntry[transactions] values with signed values only if the signedValueSet[i] holds 1 entry only. more than 1 entry means a human has to validate the signs
-                    if (sizeof($signedValueSet[$i]) == 1)
+                    echo "\n\t\tDate Validation - these entries have a problem with the data value.";
+                    include "$relativePath/include/fn-validateDate.php";
+                    include "$relativePath/include/fn-verifyUserInput.php";
+                    // loop the date array first
+                    foreach ($a_validateDates as $i => $index)
                     {
-                        // update (by &reference) the trxStr value in the current date's transactions strings to have signed values on the end
-                        $trxEntry["transactions"][$j] = substr_replace($trxStr, $signedValueSet[$i][$j], strrpos($trxStr, ',') + 1);
+                        echo "\n\t\t  • Entry $index";
+                        echo "\n\t\t    Content near these transactions: \n".print_r($a_result[$index],true)."\n";
+                        $date = false;
+                        $verified == false;
+                        while (($date === false || !validateDate($date, $aa_template[$tName]["dateFormat"])) && $verified == false;)
+                        {
+                            $date = readline("\n\t\t    Enter date [".$aa_template[$tName]["dateFormat-Output"]."]: ");
+                            // verify user input call to custom func
+                            if ($aa_template["$tName"]["verifyUserInput"]) {$verified = verifyUserInput($date);}
+                            else {$verified = true;}
+                        }
+                        unset($verified);
                     }
                 }
-*/
-                // mark entries with more than 1 signed signedValueSet for human validation
-                if (sizeof($signedValueSet[$i]) > 1) {array_push($a_validateTRXs, $i);}
             }
-
-            // use custom function to calculate the trx value signs
-            //$trxEntry["transactions"] = signValues($trxEntry["difference"], $trxEntry["transactions"]);
         }
+
+
 //        print_r($a_validateTRXs);
 //        print_r($signedValueSet);
 //        print_r($a_result);
