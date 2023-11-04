@@ -132,6 +132,7 @@ foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp)
 unset($c);
 
 file_put_contents("temp.txt",$f);
+
 // now we need to use custom processing to convert the string with trx data into a standard format object.
 if (file_exists($relativePath."templates/$tName.customCode.php")) 
 {

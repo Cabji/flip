@@ -134,7 +134,7 @@ else
         }
 
         // check if any valueSets need human verification
-        if (isset($a_validateDates) || isset($a_validateTRXs) || isset($a_validateSignss)) 
+        if (isset($a_validateDates) || isset($a_validateTRXs) || isset($a_validateSigns)) 
         {
             $i_totalVerify = sizeof($a_validateDates) + sizeof ($a_validateTRXs) + sizeof ($a_validateSigns);
             if ($i_totalVerify >= 1) 
@@ -146,7 +146,7 @@ else
                 include "$relativePath/include/fn-verifyUserInput.php";
                 if (sizeof($a_validateDates) >= 1)
                 {
-                    echo "\n\t\tDate Validation - these entries have a problem with the Date value.";
+                    echo "\n\t\t\e[33mDate Validation - these entries have a problem with the Date value.\e[39m";
                     include "$relativePath/include/fn-validateDate.php";
                     // loop the validate date array
                     foreach ($a_validateDates as $i => $index)
@@ -154,8 +154,8 @@ else
                         echo "\n\t\t  • Entry $index";
                         echo "\n\t\t    Content near these transactions: \n".print_r($a_result[$index],true)."\n";
                         $date = false;
-                        $verified == false;
-                        while (($date === false || !validateDate($date, $aa_template[$tName]["dateFormat"])) && $verified == false)
+                        $verified = false;
+                        while (($date === false || !validateDate($date, $aa_template[$tName]["dateFormat"]) || $verified == false))
                         {
                             $date = readline("\n\t\t    Enter date for these transactions [".$aa_template[$tName]["dateFormat-Output"]."]: ");
                             // verify user input call to custom func
@@ -169,21 +169,53 @@ else
                 }
 
                 // validate signed valuesets that computer is unsure about and dubious trx values in general
-                if (sizeof($a_validateTRXs) >= 1)
+                if (sizeof($a_validateSigns) >= 1)
                 {
-                    echo "\n\t\tTRX Values Validation - these entries have a problem with the TRX values/signs.";
+                    echo "\n\t\t\e[33mTRX Signs Validation - these entries have a problem with the TRX signs (+/-).\e[39m";
 
                     // loop the validate TRX array
-                    foreach ($a_validateTRXs as $i => $index)
+                    foreach ($a_validateSigns as $i => $index)
                     {
                         echo "\n\t\t  • Entry $index";
-                        echo "\n\t\t    Content near these transactions: \n".print_r($a_result[$index],true)."\n";
+                        echo "\n\t\t    This transaction group could not have the TRX Value signs determined automatically.";
+                        echo "\n\t\t    Please review the transactions and enter the sign values manually.";
+                        echo "\n\t\t    Transaction information: \n".print_r($a_result[$index],true)."\n";
+                        $signs = false;
+                        $verified = false;
+                        while ($signs === false || strlen($signs) != count($a_result[$index]["transactions"]) || $verified == false)
+                        {
+                            $signs = readline("\n\t\t    Enter value signs for these transactions (+/-) in order from top to bottom of the list above: ");
+                            
+                            // verify user input call to custom func
+                            if ($aa_template["$tName"]["verifyUserInput"]) {$verified = verifyUserInput($signs);}
+                            else {$verified = true;}
+
+                            // check if the user input is valid or not. set input to false if it is invalid (making this while loop go again)
+                            if (preg_match("/[^+-]/", $signs) || strlen($signs) != count($a_result[$index]["transactions"])) 
+                            {
+                                $signs = false;
+                            }
+                        }
+
+                        // update the trx values in the $a_result array with user validated signs
+                        echo "\n\t\t    Updating transaction values...";
+                        // aig
+                        for ($i = 0; $i < count($a_result[$index]["transactions"]); $i++) 
+                        {
+                            // find the position of the last comma in the array element
+                            $pos = strrpos($a_result[$index]["transactions"][$i], ",");
+                            // insert the character from $str before the digits
+                            $a_result[$index]["transactions"][$i] = substr_replace($a_result[$index]["transactions"][$i], $signs[$i], $pos + 1, 0);
+                            echo "\n\t\t      • ".$a_result[$index]["transactions"][$i]." ==> ".$aa_Output["CyanOk"];
+                        }
+                        unset($signs, $verified);
                     }
                 }
             }
         }
 
 
+        $d .= print_r($a_result, true);
 //        print_r($a_validateTRXs);
 //        print_r($signedValueSet);
 //        print_r($a_result);
