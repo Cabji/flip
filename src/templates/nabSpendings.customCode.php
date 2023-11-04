@@ -47,7 +47,7 @@ else
                 $a_result[$key]["closingBalance"] = $closingBalance;
 
                 // the regex catches foreign currency exchanges
-                $a_temp3 = preg_split("/(\b(?<!Frgn Amt: )[\d,]+\.\d{2}(?!%))/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
+                $a_temp3 = preg_split("/(\b(?<!(Frgn Amt: )|(Cash Out ))[\d,]+\.\d{2}(?!%))/is",$data[1],-1,PREG_SPLIT_DELIM_CAPTURE);
                 // $a_temp3 format is like this: 
                 //  array [0] = trx description A   [1] = -12.34
                 //        [2] = trx description B   [3] = +987.65
@@ -207,6 +207,20 @@ else
                             echo "\n\t\t      • ".$a_result[$index]["transactions"][$i]." ==> ".$aa_Output["CyanOk"];
                         }
                         unset($signs, $verified);
+                    }
+                }
+
+                // validate faulty valuesets that computer could not generate signed valueSet for
+                if (sizeof($a_validateTRXs) >= 1)
+                {
+                    echo "\n\t\t\e[33mTRX Values Validation - these entries have a problem with the TRX values. Signs couldn't be calculated.\e[39m";
+                    echo "\n\t\t    This transaction group could not have the TRX Value signs determined automatically because something is wrong with the TRX values.";
+                    echo "\n\t\t    Please review the transactions, note their details down and correct them in the final output data.";
+                    // loop the validate TRX array
+                    foreach ($a_validateTRXs as $i => $index)
+                    {
+                        echo "\n\t\t  • Entry $index";
+                        echo "\n\t\t    Transaction information: \n".print_r($a_result[$index],true)."\n";
                     }
                 }
             }
