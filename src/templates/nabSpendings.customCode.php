@@ -154,7 +154,7 @@ else
                         echo "\n\t\t    Content near these transactions: \n".print_r($a_result[$index],true)."\n";
                         $date = false;
                         $verified == false;
-                        while (($date === false || !validateDate($date, $aa_template[$tName]["dateFormat"])) && $verified == false;)
+                        while (($date === false || !validateDate($date, $aa_template[$tName]["dateFormat"])) && $verified == false)
                         {
                             $date = readline("\n\t\t    Enter date [".$aa_template[$tName]["dateFormat-Output"]."]: ");
                             // verify user input call to custom func
