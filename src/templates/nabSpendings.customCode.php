@@ -84,7 +84,7 @@ else
         $a_validateTRXs = array();
         echo "\n\t  • Calculating +/- signs for TRX values";
         // dev-note: &$trxEntry is passed by reference so we can update it in the foreach loop
-        $valueSet = null;
+        $signedValueSet = null;
         foreach ($a_result as $i => &$trxEntry)
         {
             if ($i % 10 === 1) {echo "\n\t\t";}
@@ -94,41 +94,62 @@ else
             if (!array_key_exists("transactions", $trxEntry)) {$d .= "$tName.customCode.php (".__LINE__."): a_result[$i] has no transactions key\n";}
             else
             {
-                // grab the trx values from the trxEntry["transactions"] array and store in $valueSet array. array_values() reindexes the array to ensure we start from index [0]
-                $valueSet[$i] = array_map(function($value) {$parts = explode(",", $value); return intval(end($parts));}, array_values($trxEntry["transactions"]));
-//                if ($i == 5) {echo "  - trxEntry[difference]: $trxEntry[difference]\n  - valueSet[i]: \n"; print_r($valueSet[$i]); echo "\n";}
+                // grab the trx values from the trxEntry["transactions"] array and store in $signedValueSet array. array_values() reindexes the array to ensure we start from index [0]
+                $signedValueSet[$i] = array_map(function($value) {$parts = explode(",", $value); return intval(end($parts));}, array_values($trxEntry["transactions"]));
+//                if ($i == 5) {echo "  - trxEntry[difference]: $trxEntry[difference]\n  - signedValueSet[i]: \n"; print_r($signedValueSet[$i]); echo "\n";}
 
-                $result = signValues($trxEntry["difference"], $valueSet[$i]);
+                // temporarily hold the result because it can return false if the input valueSet is flawed
+                $result = signValues($trxEntry["difference"], $signedValueSet[$i]);
+
+                // check for a false result and handle it
                 if ($result == false) 
                 {
-                    // signValues returned false so something is wrong with this valueSet and needs human inspection
+                    // signValues returned false so something is wrong with this signedValueSet and needs human inspection
                     array_push($a_validateTRXs, $i);
                     echo "V";
-                    $temp = $valueSet[$i];
-                    unset($valueSet[$i]);
-                    $valueSet[$i][0] = $temp;
+                    // copy the UNSIGNED valueSet (the input) to temp
+                    $temp = $signedValueSet[$i];
+                    // wipe out the UNSIGNED value set (because we need it to be a fresh multi-dim array for the output)
+                    unset($signedValueSet[$i]);
+                    // assign the temp (unsigned value set, to [0] in the same date location as it was in the signedValueSet)
+                    $signedValueSet[$i][0] = $temp;
                     unset($temp);
                 }
-                else {$valueSet[$i] = $result;}
-                // update the trxEntry[transactions] with 1 signed value set in valueSet
+                else {$signedValueSet[$i] = $result;}
+
+                // update the trxEntry[transactions] with 1 signed value set in signedValueSet
                 foreach ($trxEntry["transactions"] as $j => &$trxStr)
                 {
-                    // update the trxEntry[transactions] values with signed values only if the valueSet[i] holds 1 entry only. more than 1 entry means a human has to validate the signs
-                    if (sizeof($valueSet) == 1)
+                    // update the trxEntry[transactions] values with signed values only if the signedValueSet[i] holds 1 entry only. more than 1 entry means a human has to validate the signs
+                    if (sizeof($signedValueSet[$i]) == 1)
                     {
-                        $trxStr = substr_replace($trxStr, $valueSet[$i][$j], strrpos($trxStr, ',') + 1);
+                        // update (by &reference) the trxStr value in the current date's transactions strings to have signed values on the end
+                        $trxStr = substr_replace($trxStr, $signedValueSet[$i][0][$j], strrpos($trxStr, ',') + 1);
                     }
                 }
-                // mark entries with more than 1 signed valueSet for human validation
-                if (sizeof($valueSet[$i]) > 1) {array_push($a_validateTRXs, $i);}
+                
+/*                
+                
+                foreach ($trxEntry["transactions"] as $j => $trxStr)
+                {
+                    // update the trxEntry[transactions] values with signed values only if the signedValueSet[i] holds 1 entry only. more than 1 entry means a human has to validate the signs
+                    if (sizeof($signedValueSet[$i]) == 1)
+                    {
+                        // update (by &reference) the trxStr value in the current date's transactions strings to have signed values on the end
+                        $trxEntry["transactions"][$j] = substr_replace($trxStr, $signedValueSet[$i][$j], strrpos($trxStr, ',') + 1);
+                    }
+                }
+*/
+                // mark entries with more than 1 signed signedValueSet for human validation
+                if (sizeof($signedValueSet[$i]) > 1) {array_push($a_validateTRXs, $i);}
             }
 
             // use custom function to calculate the trx value signs
             //$trxEntry["transactions"] = signValues($trxEntry["difference"], $trxEntry["transactions"]);
         }
 //        print_r($a_validateTRXs);
-//        print_r($valueSet);
-        print_r($a_result);
+//        print_r($signedValueSet);
+//        print_r($a_result);
 /*
         // now run the custom regexes as required
         $c = 0;
