@@ -17,7 +17,7 @@ $aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)
 
 $aa_template[$tName]["dateFormat"] = "Y-m-d";
 $aa_template[$tName]["dateFormat-Output"] = "YYYY-MM-DD";
-$aa_template[$tName]["verifyUserInput"] = true;
+$aa_template[$tName]["verifyUserInput"] = false;
 
 // customRegexes are used in the template.customCode.php file after initial data processing
 $aa_template[$tName]["customRegexes"] = array("/(?# First regex in custom code)/is" => "");

@@ -156,12 +156,14 @@ else
                         $verified == false;
                         while (($date === false || !validateDate($date, $aa_template[$tName]["dateFormat"])) && $verified == false)
                         {
-                            $date = readline("\n\t\t    Enter date [".$aa_template[$tName]["dateFormat-Output"]."]: ");
+                            $date = readline("\n\t\t    Enter date for these transactions [".$aa_template[$tName]["dateFormat-Output"]."]: ");
                             // verify user input call to custom func
                             if ($aa_template["$tName"]["verifyUserInput"]) {$verified = verifyUserInput($date);}
                             else {$verified = true;}
                         }
                         unset($verified);
+                        // apply validated date to the record in $a_result
+                        $a_result[$index]["date"] = $date;
                     }
                 }
             }
