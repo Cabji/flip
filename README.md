@@ -44,7 +44,9 @@ After months of creating and rewriting this code, I realized that employing the 
 
 #### YOU SHOULD START THE REGEXES WITH A REGEX COMMENT 
 
-If you didn't know, regexes can have comments in them, just like source code does. The script will look for a comment at the beginning of each regex and extract the name of the regex for output during processing (so you can see what's happening/happened). It's also extremely handy to come back to a regex months or years later and be able to read some plain language description of what the regex does, instead of looking at it and breaking into a cold sweat as you tear up feeling a state of panic setting in. A regex comment is made like this: 
+If you didn't know, regexes can have comments in them, just like source code does. 
+
+The script will look for a comment at the beginning of each regex and extract the name of the regex for output during processing (so you can see what's happening/happened). It's also extremely handy to come back to a regex months or years later and be able to read some plain language description of what the regex does, instead of looking at it and breaking into a cold sweat as you tear up feeling a state of panic setting in. A regex comment is made like this: 
 
     /(?# This is the comment)(... the rest of the regex ...)(etc...)/
 
@@ -79,3 +81,7 @@ flip will generate a file in src/templates/<templateName>.template. This file sh
 Each template must have regexes associated to it, but regexes might not be enough to get the data to 'standard format'. Custom code can be used on a per-template basis to achieve further data processing. The custom php code for a template should be placed in: 
 
 src/templates/<templateName>.customCode.php
+
+Custom processing code *is not mandatory*. Whether you need custom processing code will depend on the format of the input data, what you can achieve with the initial regex substitutions, how you need your output data grouped/arranged etc. I found custom processing was required when I had to use math or a function to make decisions about the input data to reduce the manual processing time overall. If you are doing simple text-processing with flip, custom processing is probably not needed.
+
+You can use the -ncp option on the command line to disable custom processing entirely. Processed data will be output to text.txt and flip will notify you about this when it is executed.
