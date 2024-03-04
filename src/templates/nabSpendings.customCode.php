@@ -226,6 +226,9 @@ else
         }
 
 //      debug stuff
+
+        $d .= print_r($a_result, true);
+
 //        print_r($a_validateTRXs);
 //        print_r($signedValueSet);
 //        print_r($a_result);

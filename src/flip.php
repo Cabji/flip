@@ -6,14 +6,32 @@
     2. the bank, or "template" name
 */
 
-// deal with cmd line options and arguments first
+// set some default values
+$aa_settings = array();
+$aa_settings["optionsOutputTypes"]          = "SQLite3, CSV";
+$aa_settings["optionsCSVSeperator"]         = ",";
+$aa_settings["optionsPDFtoTextCmd"]         = "pdftotext -q -raw #INPUT# #OUTPUT#";
+$aa_settings["defaultOutputType"]           = "CSV";
+$aa_settings["defaultOutputFile"]           = "output/defaultOutput.file";
+$aa_settings["defaultCSVFields"]            = "bank,account,trxDate,trxDescription,trxValue";
+$aa_settings["defaultCSVDateFormat"]        = "d/m/Y";
+$aa_settings["defaultSqlite3TableName"]     = "trxdata";
+$aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
+$aa_settings["ncp"]                         = false;
+
+$aa_Output["RedErrorTitle"]     = "\e[31m[Error]\e[39m\n\t";
+$aa_Output["BlueStartTitle"]    = "\e[34m[Start]\e[39m\n\t";
+$aa_Output["CyanOk"]            = "\e[36mOk\e[39m";
+$aa_Output["OrangeNotice"]      = "\e[93mNotice\e[39m";
+$aa_Output["RedFail"]           = "\e[91mFail\e[39m";
+
+// deal with cmd line options and arguments
 
 $arguments = array();
 $d = null;
 $o = null;
 $options = getopt("h:t:");
 $a_result = null;
-$aa_settings = array();
 // get the relative path of the working dir to the flip.php dir
 $relativePath = ".".substr(__DIR__, strlen(realpath($_SERVER['DOCUMENT_ROOT'])))."/";
 
@@ -38,13 +56,19 @@ foreach ($options as $key => $value) {
         case 'h':
             $o  = "flip help\n\n";
             $o .= "Usage\n   php flip.php [-o optionValue ...] <inputfile>\n\n";
-            $o .= "Options\n  -h\tShow help\n  -t\tTemplate to use for processing";
-            $o .= "\n\nEnd of help\n";
+            $o .= "Options\n";
+            $o .= "  -h\tShow help\n";
+            $o .= "  -ncp\tNo custom processing (don't do custom processing)\n";
+            $o .= "  -t\tTemplate to use for processing\n";
+            $o .= "\nEnd of help\n";
             die ($o);
             break;
         case 't':
             if ($value == "") {$value = "default";}
             $aa_settings["template"] = $value;
+            break;
+        case 'ncp':
+            $aa_settings["ncp"] = true;
             break;
     }
 }
@@ -61,22 +85,6 @@ foreach ($arguments as $argument) {
     $aa_settings["inputFile"] = $argument;
     break;
 }
-
-// now we should have our settings in $aa_settings. set some default values
-$aa_settings["optionsOutputTypes"]          = "SQLite3, CSV";
-$aa_settings["optionsCSVSeperator"]         = ",";
-$aa_settings["optionsPDFtoTextCmd"]         = "pdftotext -q -raw #INPUT# #OUTPUT#";
-$aa_settings["defaultOutputType"]           = "CSV";
-$aa_settings["defaultOutputFile"]           = "output/defaultOutput.file";
-$aa_settings["defaultCSVFields"]            = "bank,account,trxDate,trxDescription,trxValue";
-$aa_settings["defaultCSVDateFormat"]        = "d/m/Y";
-$aa_settings["defaultSqlite3TableName"]     = "trxdata";
-$aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
-
-$aa_Output["RedErrorTitle"]     = "\e[31m[Error]\e[39m\n\t";
-$aa_Output["BlueStartTitle"]    = "\e[34m[Start]\e[39m\n\t";
-$aa_Output["CyanOk"]           = "\e[36mOk\e[39m";
-$aa_Output["RedFail"]           = "\e[91mFail\e[39m";
 
 // check we were given an input file, die if we weren't.
 if (!isset($aa_settings["inputFile"])) {die("No input file was supplied. Use: flip.php -h for help\n");}
@@ -135,13 +143,20 @@ unset($c);
 
 file_put_contents("temp.txt",$f);
 
-// now we need to use custom processing to convert the string with trx data into a standard format object.
-if (file_exists($relativePath."templates/$tName.customCode.php")) 
+if ($aa_settings["ncp"] == false)
 {
-    echo "\n\tRunning $tName custom processing code"; 
-    include $relativePath."templates/$tName.customCode.php";
+    // now we need to use custom processing to convert the string with trx data into a standard format object.
+    if (file_exists($relativePath."templates/$tName.customCode.php")) 
+    {
+        echo "\n\tRunning $tName custom processing code"; 
+        include $relativePath."templates/$tName.customCode.php";
+    }
+    else {echo "\n\t".$aa_Output["OrangeNotice"]." custom processing code for template $tName was not found - $relativePath.templates/$tName.customCode.php does not exist\n\t - This is ok, custom processing is not always required. Use option -ncp to prevent custom processing entirely.\n\t   Look in temp.txt for processed data.";}
 }
-else {echo "\n\t".$aa_Output["RedFail"]." running $tName custom proessing code - $relativePath.templates/$tName.customCode.php does not exist";}
+else
+{
+    echo "\n\tObeying option -ncp (No custom processing)\n\t   Your processed data will be in temp.txt";
+}
 
 // now we should have standard format in $a_result that we can output
 $aa_settings["optionsOutputTypes"]          = "SQLite3, CSV";
@@ -152,7 +167,7 @@ $sep = $aa_settings["optionsCSVSeperator"];
 
 if (isset($a_result) && count($a_result) >= 1)
 {
-    include "$relativePath/include/fn-verifyUserInput.php";
+    include_once "$relativePath/include/fn-verifyUserInput.php";
     $bank = false;
     $outputType = false;
     $s_o = false;
@@ -181,15 +196,19 @@ if (isset($a_result) && count($a_result) >= 1)
         $s_o .= $aa_settings["defaultCSVFields"]."\n";
         foreach ($a_result as $i => $dateGroupData)
         {
-            foreach ($dateGroupData["transactions"] as $j => $trxStr)
+            // skip the first entry as it's just opening balance
+            if ($i != 0)
             {
-                // explode the trxStr into trx description and trx value - note: 0 is trxVal and 1 is trxDesc because strrev()
-                $a_trxVal = explode(",",strrev($trxStr),2);
-                $a_trxVal[0] = strrev($a_trxVal[0]);
-                $a_trxVal[1] = strrev($a_trxVal[1]);
-                $dotPos = (strlen($a_trxVal[0]) - 2); // Calculate the position for the period
-                $a_trxVal[0] = substr_replace($a_trxVal[0], '.', $dotPos, 0);
-                $s_o .= "$bank$sep$tName$sep".date($dateFormat,$dateGroupData["date"])."$sep".$a_trxVal[1]."$sep".$a_trxVal[0]."\n";
+                foreach ($dateGroupData["transactions"] as $j => $trxStr)
+                {
+                    // explode the trxStr into trx description and trx value - note: 0 is trxVal and 1 is trxDesc because strrev()
+                    $a_trxVal = explode(",",strrev($trxStr),2);
+                    $a_trxVal[0] = strrev($a_trxVal[0]);
+                    $a_trxVal[1] = strrev($a_trxVal[1]);
+                    $dotPos = (strlen($a_trxVal[0]) - 2); // Calculate the position for the period
+                    $a_trxVal[0] = substr_replace($a_trxVal[0], '.', $dotPos, 0);
+                    $s_o .= "$bank$sep$tName$sep".date($dateFormat,$dateGroupData["date"])."$sep".$a_trxVal[1]."$sep".$a_trxVal[0]."\n";
+                }
             }
         }
     }

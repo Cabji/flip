@@ -2,7 +2,7 @@
 
 $tName = "nabSpendings";
 
-// user-note: use a comment at the start of your regexes. It is better for later on and the script will output what it's doing when it uses the regex
+// user-note: use a comment at tte start of your regexes. It is better for later on and the script will output what it's doing when it uses the regex
 // To do a comment do this:
 // "/(?# Regex comment here)(the rest of your regex)/is"
 //   |                     |
