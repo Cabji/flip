@@ -76,7 +76,7 @@ INSERT INFO ABOUT HOW TO MAKE AND LAY OUT A TEMPLATE FILE
 
 flip will generate a file in src/templates/<templateName>.template. This file should be left alone and not altered. To alter the template's regex settings, you should alter the src/templates/<templateName>.template.php file.
 
-### Custom Template Code
+### Template Custom Processing Code
 
 Each template must have regexes associated to it, but regexes might not be enough to get the data to 'standard format'. Custom code can be used on a per-template basis to achieve further data processing. The custom php code for a template should be placed in: 
 
@@ -84,4 +84,4 @@ src/templates/<templateName>.customCode.php
 
 Custom processing code *is not mandatory*. Whether you need custom processing code will depend on the format of the input data, what you can achieve with the initial regex substitutions, how you need your output data grouped/arranged etc. I found custom processing was required when I had to use math or a function to make decisions about the input data to reduce the manual processing time overall. If you are doing simple text-processing with flip, custom processing is probably not needed.
 
-You can use the -ncp option on the command line to disable custom processing entirely. Processed data will be output to text.txt and flip will notify you about this when it is executed.
+You can use the -ncp option (No Custom Processing) on the command line to disable custom processing entirely. Processed data will be output to text.txt and flip will notify you about this when it is executed.
