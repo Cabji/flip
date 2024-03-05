@@ -1,3 +1,10 @@
+20240305: 
+ - added new template (brimsHardware)
+ - added -ncp option: no custom processing
+ - added -tttc option: Text: to Title Case
+ - updated README
+ - added .gitignore to my dev folder to ignore all the temporary files so the git repo only has the needed files
+
 20231102:
  - added customRegexes and customCode template file for additional processing of input data to achieve "standard format"
  - finished initial processing of PDF file to text format and extracting desired data only via template configuration
