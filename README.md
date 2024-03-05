@@ -86,23 +86,23 @@ Custom processing code *is not mandatory*. Whether you need custom processing co
 
 You can use the -ncp option (No Custom Processing) on the command line to disable custom processing entirely. Processed data will be output to text.txt and flip will notify you about this when it is executed.
 
-#### UNDERSTANDING THE FLIP OPTIONS
+### UNDERSTANDING THE FLIP OPTIONS
 
 Flip offers a few options and this list will be expanding as it is used and developed in the future. In alphabetical order: 
 
-### -h
+#### -h
 
 Shows the help output
 
-### -ncp
+#### -ncp
 
 Ensures no custom processing for the template is performed
 
-### -t
+#### -t
 
 Defines which [existing] template to use. Usage: php src/flip.php -t templateName input.pdf
 
-### -tttc
+#### -tttc
 
 Text: to Title Case - this will convert *all words* in the input text to Title Case using PHP's ucwords() function after the initial template processing is complete (but before the custom processing). You can use this as a quick and dirty way to title case text instead of having to write custom processing to do it. 
 
