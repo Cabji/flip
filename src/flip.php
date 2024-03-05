@@ -152,7 +152,6 @@ if ($aa_settings["tttc"] == true)
     echo "\n\t-tttc: Converting all words to Title Case ===> ";
     $f = ucwords(strtolower($f)," \t\r\n\f\v,");
     echo $aa_Output["CyanOk"];
-    echo $f;
 }
 
 file_put_contents("temp.txt",$f);
