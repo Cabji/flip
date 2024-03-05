@@ -85,3 +85,25 @@ src/templates/<templateName>.customCode.php
 Custom processing code *is not mandatory*. Whether you need custom processing code will depend on the format of the input data, what you can achieve with the initial regex substitutions, how you need your output data grouped/arranged etc. I found custom processing was required when I had to use math or a function to make decisions about the input data to reduce the manual processing time overall. If you are doing simple text-processing with flip, custom processing is probably not needed.
 
 You can use the -ncp option (No Custom Processing) on the command line to disable custom processing entirely. Processed data will be output to text.txt and flip will notify you about this when it is executed.
+
+#### UNDERSTANDING THE FLIP OPTIONS
+
+Flip offers a few options and this list will be expanding as it is used and developed in the future. In alphabetical order: 
+
+### -h
+
+Shows the help output
+
+### -ncp
+
+Ensures no custom processing for the template is performed
+
+### -t
+
+Defines which [existing] template to use. Usage: php src/flip.php -t templateName input.pdf
+
+### -tttc
+
+Text: to Title Case - this will convert *all words* in the input text to Title Case using PHP's ucwords() function after the initial template processing is complete (but before the custom processing). You can use this as a quick and dirty way to title case text instead of having to write custom processing to do it. 
+
+Note: the standard PHP ucwords() function is used, but it also adds the comma character (,) to the seperators argument which means words that come after a , will be capitalized as well.

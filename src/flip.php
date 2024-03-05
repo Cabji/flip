@@ -18,6 +18,7 @@ $aa_settings["defaultCSVDateFormat"]        = "d/m/Y";
 $aa_settings["defaultSqlite3TableName"]     = "trxdata";
 $aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
 $aa_settings["ncp"]                         = false;
+$aa_settings["tttc"]                        = false;
 
 $aa_Output["RedErrorTitle"]     = "\e[31m[Error]\e[39m\n\t";
 $aa_Output["BlueStartTitle"]    = "\e[34m[Start]\e[39m\n\t";
@@ -60,12 +61,16 @@ foreach ($options as $key => $value) {
             $o .= "  -h\tShow help\n";
             $o .= "  -ncp\tNo custom processing (don't do custom processing)\n";
             $o .= "  -t\tTemplate to use for processing\n";
+            $o .= "  -tttc\tText: to Title Case\n";
             $o .= "\nEnd of help\n";
             die ($o);
             break;
         case 't':
             if ($value == "") {$value = "default";}
             $aa_settings["template"] = $value;
+            break;
+        case 'tttc':
+            $aa_settings["tttc"] = true;
             break;
         case 'ncp':
             $aa_settings["ncp"] = true;
@@ -141,6 +146,15 @@ foreach ($aa_template[$tName]["regexes"] as $regExp => $subExp)
 }
 unset($c);
 
+// convert input data strings to Title Case if required
+if ($aa_settings["tttc"] == true)
+{
+    echo "\n\t-tttc: Converting all words to Title Case ===> ";
+    $f = ucwords(strtolower($f)," \t\r\n\f\v,");
+    echo $aa_Output["CyanOk"];
+    echo $f;
+}
+
 file_put_contents("temp.txt",$f);
 
 if ($aa_settings["ncp"] == false)
@@ -155,7 +169,7 @@ if ($aa_settings["ncp"] == false)
 }
 else
 {
-    echo "\n\tObeying option -ncp (No custom processing)\n\t   Your processed data will be in temp.txt";
+    echo "\n\t-ncp: No custom processing - Your processed data will be in temp.txt";
 }
 
 // now we should have standard format in $a_result that we can output
