@@ -18,6 +18,7 @@ $aa_settings["defaultCSVDateFormat"]        = "d/m/Y";
 $aa_settings["defaultSqlite3TableName"]     = "trxdata";
 $aa_settings["defaultSqlite3TableFields"]   = "userid,bank,account,trxDate,trxDescription,trxValue";
 $aa_settings["ncp"]                         = false;
+$aa_settings["of"]                          = false;
 $aa_settings["tttc"]                        = false;
 
 $aa_Output["RedErrorTitle"]     = "\e[31m[Error]\e[39m\n\t";
@@ -75,6 +76,10 @@ foreach ($options as $key => $value) {
         case 'ncp':
             $aa_settings["ncp"] = true;
             break;
+        case 'of':
+            if ($value == "") {$value = false;}
+            $aa_settings["of"] = $value;
+            break;
     }
 }
 
@@ -123,7 +128,7 @@ if (!isset($f)) {die($aa_Output["RedFail"]."\n\nFailed to read input file conten
 else {echo $aa_Output["CyanOk"];
 }
 
-// if we get here, we should have out input content in $f
+// if we get here, we should have our input content in $f
 echo "\n\t  • Apply regexes to text data";
 
 // $aa_template[$tName]["regexes"]
@@ -154,7 +159,15 @@ if ($aa_settings["tttc"] == true)
     echo $aa_Output["CyanOk"];
 }
 
-file_put_contents("temp.txt",$f);
+// output to user defined output file else output to temp.txt
+if ($aa_settings["of"])
+{
+    file_put_contents($aa_settings["of"],$f);
+}
+else
+{
+    file_put_contents("temp.txt",$f);
+}
 
 if ($aa_settings["ncp"] == false)
 {

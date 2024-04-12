@@ -1,0 +1,6 @@
+a:3:{s:147:"/(?# Extracting Mesh Rate Data)(.*?)((\b\w+\b) (\b\w+\b) (\d+) (\d+) ([\d\.]*) (\d+) ([\d\.]*) (\d+) ([\d\.]*) \$(\d{0,3}),?(\d{0,3})(\.\d{2})
+)/is";s:36:"$3,$4,$5,$6,$7,$8,$9,$10,$11,$12$14
+";s:46:"/(?# Removing any unwanted data)
+Notes :
+.*/is";s:0:"";s:37:"/(?# Insert field headers at top)^/is";s:105:"Product Number,Standard Unit,Height,Width,Longitudinal Wires,Spacing,Cross Wires,Spacing,Mass (kg),Price
+";}

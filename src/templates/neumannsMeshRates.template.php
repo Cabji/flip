@@ -1,6 +1,6 @@
 <?php
 
-$tName = "default";
+$tName = "neumannsMeshRates";
 
 // user-note: use a comment at tte start of your regexes. It is better for later on and the script will output what it's doing when it uses the regex
 // To do a comment do this:
@@ -13,10 +13,9 @@ $tName = "default";
 // if you use $ character in your regex string, you NEED TO prepend it with TWO backslash chars, not one, like: \\$
 // otherwise PHP won't execute the regex correctly.
 
-$aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)(.*?)(Carried forward|Identifying)/is" => "$3", 
-                                        "/(?# Remove excessive ... dots from trx data)(\.\.\.*)/is" => "",
-                                        "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)\n([\d,]+\.\d{2}))|(( Brought forward )([\d,]+\.\d{2}) (Cr|Dr)))/is" => "$1#SEP#$3$9#SEP#$7$10 $6$11#DATEBREAK#\n",
-                                        "/(?# Clean up excessive whitespace in all data)((?<!#DATEBREAK#)\s+)/is" => " ");
+$aa_template[$tName]["regexes"] = array("/(?# Extracting Mesh Rate Data)(.*?)((\b\w+\b) (\b\w+\b) (\d+) (\d+) ([\d\.]*) (\d+) ([\d\.]*) (\d+) ([\d\.]*) \\$(\d{0,3}),?(\d{0,3})(\.\d{2})\n)/is" => "$3,$4,$5,$6,$7,$8,$9,$10,$11,$12$14\n", 
+                                        "/(?# Removing any unwanted data)\nNotes :\n.*/is" => "",
+                                        "/(?# Insert field headers at top)^/is" => "Product Number,Standard Unit,Height,Width,Longitudinal Wires,Spacing,Cross Wires,Spacing,Mass (kg),Price\n");
 
 $aa_template[$tName]["dateFormat"] = "Y-m-d";
 $aa_template[$tName]["dateFormat-Output"] = "YYYY-MM-DD";

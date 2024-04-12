@@ -1,6 +1,6 @@
 <?php
 
-$tName = "default";
+$tName = "neumannsSteelPerMg-to-JQ2.0.1";
 
 // user-note: use a comment at tte start of your regexes. It is better for later on and the script will output what it's doing when it uses the regex
 // To do a comment do this:
@@ -13,10 +13,9 @@ $tName = "default";
 // if you use $ character in your regex string, you NEED TO prepend it with TWO backslash chars, not one, like: \\$
 // otherwise PHP won't execute the regex correctly.
 
-$aa_template[$tName]["regexes"] = array("/(?# Initial Regex to extract TRX Data)(.*?)(Date Particulars Debits Credits Balance\s?)(.*?)(Carried forward|Identifying)/is" => "$3", 
-                                        "/(?# Remove excessive ... dots from trx data)(\.\.\.*)/is" => "",
-                                        "/(?# Group by Date and find Closing Balances)(\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4})(.*?)(((Cr|Dr)\n([\d,]+\.\d{2}))|(( Brought forward )([\d,]+\.\d{2}) (Cr|Dr)))/is" => "$1#SEP#$3$9#SEP#$7$10 $6$11#DATEBREAK#\n",
-                                        "/(?# Clean up excessive whitespace in all data)((?<!#DATEBREAK#)\s+)/is" => " ");
+$aa_template[$tName]["regexes"] = array("/(?# Extracting Steel per Mg Rates)(?s:.*?)((?#CnB)(^\b[\w\.]+\b) \\$(\d{0,3}),*(\d{0,3})(\.\d{2}) \\$(\d{0,3}),*(\d{0,3})(\.\d{2}) \\$(\d{0,3}),*(\d{0,3})(\.\d{2})( \\$(\d{0,3}),*(\d{0,3})(\.\d{2}))*)/im" => "Materials,Neumanns,$2,,Steel - $2 - Stock (per Mg),$3$4$5,,,tonnes\nMaterials,Neumanns,$2,,Steel - $2 - C&B (per Mg),$6$7$8,,,tonnes\nMaterials,Neumanns,$2,,Steel - $2 - Complex Shape (per Mg),$9$10$11,,,tonnes\nMaterials,Neumanns,$2,,Steel - $2 - Fabrication (per Mg),$13$14$15,,,tonnes\n", 
+                                        "/(?# Removing any unwanted data)\n1\n.*/is" => "",
+                                        "/(?# Insert field headers at top)^/is" => "Category,Supplier,SupplierSKU,SupplierDesc,Item,Cost per Unit,Formula Not Reqd,Material Coverage Formula,Unit\n");
 
 $aa_template[$tName]["dateFormat"] = "Y-m-d";
 $aa_template[$tName]["dateFormat-Output"] = "YYYY-MM-DD";

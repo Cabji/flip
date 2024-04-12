@@ -1,0 +1,8 @@
+a:3:{s:200:"/(?# Extracting Steel per Mg Rates)(?s:.*?)((?#CnB)(^\b[\w\.]+\b) \$(\d{0,3}),*(\d{0,3})(\.\d{2}) \$(\d{0,3}),*(\d{0,3})(\.\d{2}) \$(\d{0,3}),*(\d{0,3})(\.\d{2})( \$(\d{0,3}),*(\d{0,3})(\.\d{2}))*)/im";s:285:"Materials,Neumanns,$2,,Steel - $2 - Stock (per Mg),$3$4$5,,,tonnes
+Materials,Neumanns,$2,,Steel - $2 - C&B (per Mg),$6$7$8,,,tonnes
+Materials,Neumanns,$2,,Steel - $2 - Complex Shape (per Mg),$9$10$11,,,tonnes
+Materials,Neumanns,$2,,Steel - $2 - Fabrication (per Mg),$13$14$15,,,tonnes
+";s:40:"/(?# Removing any unwanted data)
+1
+.*/is";s:0:"";s:37:"/(?# Insert field headers at top)^/is";s:110:"Category,Supplier,SupplierSKU,SupplierDesc,Item,Cost per Unit,Formula Not Reqd,Material Coverage Formula,Unit
+";}
